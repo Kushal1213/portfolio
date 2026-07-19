@@ -6,6 +6,9 @@ export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) return
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -19,24 +22,24 @@ export default function ParticleBackground() {
       radius: number
       opacity: number
       speed: number
-      direction: number
       phase: number
     }> = []
 
     const resizeCanvas = () => {
-     (canvas.width = window.innerWidth), (canvas.height = window.innerHeight)
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
     }
 
     const initParticles = () => {
       particles.length = 0
-      for (let i = 0; i < 140; i++) {
+      const count = Math.min(80, Math.floor(window.innerWidth / 20))
+      for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          radius: Math.random() * 1.2 + 0.3,
-          opacity: Math.random() * 0.6 + 0.1,
-          speed: Math.random() * 0.3 + 0.05,
-          direction: Math.random() > 0.5 ? 1 : -1,
+          radius: Math.random() * 1 + 0.3,
+          opacity: Math.random() * 0.4 + 0.05,
+          speed: Math.random() * 0.2 + 0.03,
           phase: Math.random() * Math.PI * 2,
         })
       }
@@ -44,17 +47,14 @@ export default function ParticleBackground() {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      particles.forEach((particle) => {
-        particle.phase += particle.speed * 0.02
-        particle.opacity = 0.15 + Math.abs(Math.sin(particle.phase)) * 0.6
-
+      particles.forEach((p) => {
+        p.phase += p.speed * 0.02
+        p.opacity = 0.08 + Math.abs(Math.sin(p.phase)) * 0.25
         ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(200, 220, 255, ${particle.opacity})`
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(99, 102, 241, ${p.opacity})`
         ctx.fill()
       })
-
       animationFrameId = requestAnimationFrame(animate)
     }
 
@@ -62,13 +62,14 @@ export default function ParticleBackground() {
     initParticles()
     animate()
 
-    window.addEventListener('resize', () => {
+    const onResize = () => {
       resizeCanvas()
       initParticles()
-    })
+    }
+    window.addEventListener('resize', onResize)
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas)
+      window.removeEventListener('resize', onResize)
       cancelAnimationFrame(animationFrameId)
     }
   }, [])
@@ -76,7 +77,8 @@ export default function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-60"
+      aria-hidden="true"
     />
   )
 }

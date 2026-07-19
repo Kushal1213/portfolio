@@ -1,117 +1,139 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { Code, Zap, Target, Rocket, Cpu, Database } from 'lucide-react'
+import SectionHeader from '@/components/ui/SectionHeader'
+import { EDUCATION } from '@/data/portfolio'
 
 export default function About() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const highlights = [
+    {
+      icon: Code,
+      title: 'Engineering Mindset',
+      description:
+        'I decompose complex problems into testable components, design for scalability, and validate assumptions with data before shipping.',
+      color: 'text-primary',
+    },
+    {
+      icon: Zap,
+      title: 'Continuous Learning',
+      description:
+        'From Graph Neural Networks to production LLM inference servers — I learn by building, contributing to open source, and solving hard problems.',
+      color: 'text-secondary',
+    },
+    {
+      icon: Target,
+      title: 'Impact-Driven',
+      description:
+        'Every project targets measurable outcomes: 25% fraud detection improvement, 30% SQL accuracy gains, zero data loss in production pipelines.',
+      color: 'text-accent',
+    },
+    {
+      icon: Rocket,
+      title: 'Production Focus',
+      description:
+        'I ship with testing, documentation, and deployment in mind — from AMD open-source PRs to Flask and Node.js production deployments.',
+      color: 'text-success',
+    },
+  ]
 
-  const stats = [
-    { num: '2', label: 'OSS PRs merged into AMD Lemonade' },
-    { num: '5', label: 'Issues raised & resolved in production' },
-    { num: '3×', label: 'Oracle OCI Certified' },
-    { num: '25%', label: 'False positive reduction in fraud detection' },
+  const techFocus = [
+    { label: 'Backend Systems', icon: Database },
+    { label: 'Machine Learning', icon: Cpu },
+    { label: 'Generative AI', icon: Zap },
+    { label: 'Cloud Infrastructure', icon: Rocket },
   ]
 
   return (
-    <section id="about" className="py-24 relative z-10">
-      <div className="max-w-[1100px] mx-auto px-10">
-        <motion.div
-          className="font-mono text-xs text-gh-green tracking-[0.15em] uppercase mb-3"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          // about me
-        </motion.div>
+    <section id="about" className="section-padding relative z-10">
+      <div className="container-main">
+        <SectionHeader
+          label="// about"
+          title="Engineer who builds"
+          titleAccent="systems that scale."
+          description={`${EDUCATION.degree} student at ${EDUCATION.institution}, graduating ${EDUCATION.graduation}. I specialize in AI/ML pipelines, backend architecture, and open-source contributions — turning complex problems into production software.`}
+        />
 
-        <motion.h2
-          className="text-[clamp(32px,5vw,52px)] font-extrabold tracking-tight leading-tight mb-5"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Hi, I'm Kushal 👋
-        </motion.h2>
+        <div className="grid md:grid-cols-2 gap-5 mb-16">
+          {highlights.map((h, i) => (
+            <motion.div
+              key={h.title}
+              className="glass rounded-2xl p-7 hover:bg-surface-hover interactive"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              whileHover={{ y: -3 }}
+            >
+              <h.icon className={`${h.color} mb-3`} size={24} />
+              <h3 className="text-lg font-semibold mb-2">{h.title}</h3>
+              <p className="text-text-secondary text-sm leading-relaxed">{h.description}</p>
+            </motion.div>
+          ))}
+        </div>
 
-        <motion.p
-          className="text-lg text-gh-muted max-w-[540px] leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Aspiring SDE. Always happy to help — feel free to reach out.
-        </motion.p>
-
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-16 mt-16 items-center">
-          {/* Code Block */}
+        <div className="grid lg:grid-cols-2 gap-10 items-start">
           <motion.div
-            className="bg-gh-surface border border-gh-border rounded-xl overflow-hidden"
-            initial={{ opacity: 0, x: -30 }}
+            className="glass-strong rounded-2xl overflow-hidden shadow-glow"
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
           >
-            <div className="bg-gh-surface/80 border-b border-gh-border px-4 py-3 flex items-center gap-2">
+            <div className="bg-surface/90 border-b border-border px-4 py-3 flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
               <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
               <div className="w-3 h-3 rounded-full bg-[#28c840]" />
-              <span className="ml-2 font-mono text-xs text-gh-muted">kushal.py</span>
+              <span className="ml-2 font-mono text-xs text-text-secondary">engineer.ts</span>
             </div>
-            <div className="p-6 font-mono text-sm leading-relaxed">
-              <pre className="text-[13px]">
-                <span className="text-[#ff79c6]">class</span> <span className="text-[#50fa7b]">Kushal</span>:
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;name = <span className="text-[#f1fa8c]">"Kushal Choudhary"</span>
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;degree = <span className="text-[#f1fa8c]">"B.Tech CSE (AI & Robotics)"</span>
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;university = <span className="text-[#f1fa8c]">"VIT Chennai"</span>
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;graduation = <span className="text-[#f1fa8c]">2026"</span>
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;cgpa = <span className="text-[#f1fa8c]">7.92"</span>
-                <br />
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;focus = [
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#f1fa8c]">"Backend Systems"</span>,
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#f1fa8c]">"Machine Learning"</span>,
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#f1fa8c]">"Generative AI"</span>,
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#f1fa8c]">"Open Source"</span>,
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;]
-                <br />
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#ff79c6]">def</span> <span className="text-[#bd93f9]">greet</span>(<span className="text-[#8be9fd]">self</span>):
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-[#ff79c6]">return</span> <span className="text-[#f1fa8c]">"Let's build something that works."</span>
+            <div className="p-6 font-mono text-[13px] leading-relaxed overflow-x-auto">
+              <pre>
+                <span className="text-primary">interface</span>{' '}
+                <span className="text-secondary">Engineer</span> {'{'}
+                {'\n'}  name: <span className="text-accent">&quot;Kushal Choudhary&quot;</span>;
+                {'\n'}  role: <span className="text-accent">&quot;Software Engineer&quot;</span>;
+                {'\n'}  education: <span className="text-accent">&quot;B.Tech CSE (AI &amp; Robotics)&quot;</span>;
+                {'\n'}  university: <span className="text-accent">&quot;VIT Chennai&quot;</span>;
+                {'\n'}  graduation: <span className="text-accent">2026</span>;
+                {'\n'}  cgpa: <span className="text-accent">{EDUCATION.cgpa}</span>;
+                {'\n\n'}  focus: <span className="text-primary">Array</span>&lt;<span className="text-secondary">string</span>&gt; = [
+                {'\n'}    <span className="text-accent">&quot;Backend Systems&quot;</span>,
+                {'\n'}    <span className="text-accent">&quot;Machine Learning&quot;</span>,
+                {'\n'}    <span className="text-accent">&quot;Generative AI&quot;</span>,
+                {'\n'}    <span className="text-accent">&quot;Open Source&quot;</span>,
+                {'\n'}  ];
+                {'\n\n'}  <span className="text-primary">async</span>{' '}
+                <span className="text-secondary">build</span>() {'{'}
+                {'\n'}    <span className="text-primary">return</span>{' '}
+                <span className="text-accent">&quot;Production-ready solutions&quot;</span>;
+                {'\n'}  {'}'}
+                {'\n'}{'}'}
               </pre>
             </div>
           </motion.div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-5">
-            {stats.map((stat, index) => (
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold mb-2">Technical Focus</h3>
+            {techFocus.map((tech, i) => (
               <motion.div
-                key={index}
-                className="bg-gh-surface border border-gh-border rounded-xl p-6 hover:border-gh-green hover:-translate-y-1 transition-all interactive"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={tech.label}
+                className="flex items-center gap-4 p-4 glass rounded-xl hover:bg-surface-hover interactive"
+                initial={{ opacity: 0, x: 16 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3 + index * 0.1 }}
+                transition={{ delay: i * 0.08 }}
+                whileHover={{ x: 4 }}
               >
-                <div className="font-mono text-[40px] font-extrabold text-gradient leading-none mb-1.5">
-                  {stat.num}
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <tech.icon className="text-primary" size={20} />
                 </div>
-                <div className="text-sm text-gh-muted">{stat.label}</div>
+                <span className="font-medium">{tech.label}</span>
               </motion.div>
             ))}
+            <p className="text-text-secondary text-sm leading-relaxed pt-2">
+              I write clean, maintainable code and design systems that handle real-world scale.
+              Whether architecting REST APIs, training ML models on 500K+ records, or contributing
+              test coverage to production inference servers — I focus on measurable impact.
+            </p>
           </div>
         </div>
       </div>

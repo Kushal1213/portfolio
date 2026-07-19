@@ -1,89 +1,98 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Briefcase, Calendar, MapPin, ExternalLink } from 'lucide-react'
+import SectionHeader from '@/components/ui/SectionHeader'
+import { EXPERIENCE } from '@/data/portfolio'
 
 export default function Experience() {
-  const experiences = [
-    {
-      date: 'Apr 2025 – Jul 2025',
-      role: 'Trainee — Generative AI Engineering',
-      company: 'SmartBridge × Google Cloud',
-      bullets: [
-        'Selected for a competitive externship focused on building real-world Generative AI applications on Google Cloud infrastructure.',
-        'Built QueryCraft — an AI-powered Text-to-SQL platform enabling non-technical users to query structured databases using natural language.',
-        'Applied prompt engineering and schema grounding techniques, achieving a 30% improvement in SQL accuracy over baseline.',
-        'Implemented query validation and execution pipelines before surfacing results, reducing hallucinated column/table names significantly.',
-      ],
-    },
-    {
-      date: 'Jun 2026 (present)',
-      role: 'Open Source Contributor',
-      company: 'AMD Lemonade — lemonade-sdk/lemonade',
-      bullets: [
-        'Identified systemic test coverage gaps in AMD\'s production LLM inference server (C++ + Python test suite).',
-        '2 PRs merged into main — test coverage for production endpoint + LangChain integration documentation.',
-        'Raised 5 actionable issues — bugs, silent test shadowing, race condition detection gaps — 3 fixed by core team.',
-        'CI architecture improvement (env-var gated integration tests) adopted by maintainer across the codebase.',
-      ],
-      highlight: true,
-    },
-  ]
-
   return (
-    <section id="experience" className="py-24 bg-gradient-to-b from-[#0a0f1a] to-gh-bg relative z-10">
-      <div className="max-w-[1100px] mx-auto px-10">
-        <motion.div
-          className="font-mono text-xs text-gh-green tracking-[0.15em] uppercase mb-3"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          // experience
-        </motion.div>
+    <section id="experience" className="section-padding relative z-10 bg-bg-secondary/30">
+      <div className="container-main">
+        <SectionHeader
+          label="// experience"
+          title="Professional"
+          titleAccent="journey."
+          description="From competitive AI externships to open-source contributions at AMD — hands-on experience building and improving production-grade systems."
+        />
 
-        <motion.h2
-          className="text-[clamp(32px,5vw,52px)] font-extrabold tracking-tight leading-tight mb-5"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Where I've Worked
-        </motion.h2>
+        <div className="relative space-y-8">
+          <div className="absolute left-[1.125rem] top-4 bottom-4 w-px bg-gradient-to-b from-primary via-secondary/50 to-transparent hidden md:block" />
 
-        <div className="relative mt-16 pl-8">
-          {/* Timeline line */}
-          <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-gradient-to-b from-gh-green to-transparent" />
-
-          {experiences.map((exp, index) => (
+          {EXPERIENCE.map((exp, index) => (
             <motion.div
-              key={index}
-              className="relative mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              key={exp.role}
+              className="relative md:pl-14"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              {/* Timeline dot */}
               <div
-                className={`absolute left-[-32px] top-1 w-4 h-4 rounded-full border-2 ${
+                className={`absolute left-3 top-7 w-3.5 h-3.5 rounded-full border-2 hidden md:block ${
                   exp.highlight
-                    ? 'bg-gh-green-dark border-gh-green shadow-[0_0_12px_rgba(63,185,80,0.5)]'
-                    : 'bg-gh-green/10 border-gh-green shadow-[0_0_12px_rgba(63,185,80,0.3)]'
+                    ? 'bg-primary border-primary shadow-[0_0_16px_rgba(99,102,241,0.5)]'
+                    : 'bg-surface border-primary/60'
                 }`}
               />
 
-              <div className="font-mono text-xs text-gh-green tracking-[0.08em] mb-1.5">{exp.date}</div>
-              <div className="text-xl font-bold mb-1">{exp.role}</div>
-              <div className="text-base text-gh-muted mb-4">{exp.company}</div>
+              <motion.div
+                className={`glass rounded-2xl p-7 hover:bg-surface-hover interactive ${
+                  exp.highlight ? 'shadow-glow border-primary/20' : ''
+                }`}
+                whileHover={{ y: -3 }}
+              >
+                <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
+                  <div className="flex items-start gap-4">
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${
+                      exp.highlight ? 'bg-primary/15' : 'bg-surface'
+                    }`}>
+                      <Briefcase className={exp.highlight ? 'text-primary' : 'text-text-secondary'} size={20} />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold">{exp.role}</h3>
+                      {exp.companyUrl ? (
+                        <a
+                          href={exp.companyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary font-medium text-sm inline-flex items-center gap-1 hover:underline"
+                        >
+                          {exp.company}
+                          <ExternalLink size={12} />
+                        </a>
+                      ) : (
+                        <p className="text-primary font-medium text-sm">{exp.company}</p>
+                      )}
+                    </div>
+                  </div>
+                  {exp.highlight && (
+                    <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-mono rounded-full">
+                      Current
+                    </span>
+                  )}
+                </div>
 
-              <ul className="flex flex-col gap-2">
-                {exp.bullets.map((bullet, i) => (
-                  <li key={i} className="text-base text-gh-muted pl-5 relative leading-relaxed">
-                    <span className="absolute left-0 text-gh-green font-mono">→</span>
-                    <span dangerouslySetInnerHTML={{ __html: bullet.replace(/competitive|QueryCraft|30%|2 PRs|5 actionable/g, '<strong class="text-gh-text font-semibold">$&</strong>') }} />
-                  </li>
-                ))}
-              </ul>
+                <div className="flex flex-wrap gap-4 mb-5 text-sm text-text-secondary">
+                  <span className="flex items-center gap-1.5">
+                    <Calendar size={14} />
+                    {exp.date}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <MapPin size={14} />
+                    {exp.location}
+                  </span>
+                </div>
+
+                <ul className="space-y-2.5">
+                  {exp.bullets.map((bullet) => (
+                    <li key={bullet.slice(0, 40)} className="text-sm text-text-secondary pl-4 relative leading-relaxed">
+                      <span className="absolute left-0 text-primary font-mono text-xs">›</span>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             </motion.div>
           ))}
         </div>

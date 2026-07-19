@@ -1,67 +1,104 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Award, Cloud, GraduationCap, ExternalLink } from 'lucide-react'
 
 export default function Certifications() {
   const certifications = [
     {
-      icon: '🏆',
+      icon: Award,
       issuer: 'Oracle · OCI',
       title: 'OCI 2025 Certified Data Science Professional',
       year: '2025',
+      description: 'Certified in data science fundamentals, machine learning, and Oracle Cloud Infrastructure services.',
     },
     {
-      icon: '🥇',
+      icon: Cloud,
       issuer: 'Oracle · OCI',
       title: 'OCI Generative AI Professional',
       year: '2025',
+      description: 'Specialized certification in Generative AI concepts, implementation, and Oracle Cloud AI services.',
     },
     {
-      icon: '🎖️',
+      icon: GraduationCap,
       issuer: 'Oracle · OCI',
       title: 'OCI AI Foundations Associate',
       year: '2024',
+      description: 'Foundational certification in artificial intelligence concepts and Oracle Cloud AI infrastructure.',
     },
   ]
 
   return (
-    <section className="py-24 bg-gradient-to-b from-gh-bg to-[#0a0f1a] relative z-10">
-      <div className="max-w-[1100px] mx-auto px-10">
+    <section id="certifications" className="py-32 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Section Header */}
         <motion.div
-          className="font-mono text-xs text-gh-green tracking-[0.15em] uppercase mb-3"
+          className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          // certifications
+          <motion.div
+            className="font-mono text-xs text-primary tracking-[0.2em] uppercase mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            // certifications
+          </motion.div>
+
+          <motion.h2
+            className="text-[clamp(40px,5vw,64px)] font-bold tracking-tight leading-tight mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            Professional
+            <span className="text-gradient"> Certifications</span>
+          </motion.h2>
+
+          <motion.p
+            className="text-lg text-text-secondary max-w-3xl leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            Verified credentials demonstrating expertise in cloud computing, 
+            machine learning, and artificial intelligence from industry leaders.
+          </motion.p>
         </motion.div>
 
-        <motion.h2
-          className="text-[clamp(32px,5vw,52px)] font-extrabold tracking-tight leading-tight mb-5"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Credentials
-        </motion.h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16">
+        {/* Certifications Grid */}
+        <div className="grid md:grid-cols-3 gap-6">
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
-              className="bg-gradient-to-br from-[#0d1f0d] to-[#0a1a24] border border-gh-border rounded-xl p-7 flex gap-4 hover:border-gh-green hover:-translate-y-1 transition-all interactive"
+              className="glass rounded-2xl p-8 hover:bg-surface-hover transition-all interactive group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: 0.3 + index * 0.1 }}
+              whileHover={{ y: -4, scale: 1.02 }}
             >
-              <div className="text-4xl">{cert.icon}</div>
-              <div>
-                <div className="font-mono text-[11px] text-gh-orange tracking-[0.08em] mb-1.5">
-                  {cert.issuer}
-                </div>
-                <div className="text-base font-semibold leading-relaxed">{cert.title}</div>
-                <div className="font-mono text-xs text-gh-muted mt-2">{cert.year}</div>
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all">
+                <cert.icon className="text-primary" size={28} />
+              </div>
+              
+              <div className="font-mono text-xs text-primary tracking-[0.1em] uppercase mb-3">
+                {cert.issuer}
+              </div>
+              
+              <h3 className="text-xl font-semibold mb-2">{cert.title}</h3>
+              
+              <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                {cert.description}
+              </p>
+              
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-text-secondary font-mono">{cert.year}</span>
+                <ExternalLink className="text-text-secondary group-hover:text-primary transition-colors" size={18} />
               </div>
             </motion.div>
           ))}

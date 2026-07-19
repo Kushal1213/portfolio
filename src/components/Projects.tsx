@@ -1,199 +1,225 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ExternalLink } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  Github,
+  ExternalLink,
+  ArrowRight,
+  ChevronDown,
+  Server,
+  Database,
+  Cloud,
+  Cpu,
+  Globe,
+  Layers,
+} from 'lucide-react'
+import SectionHeader from '@/components/ui/SectionHeader'
+import { PROJECTS } from '@/data/portfolio'
+
+const archIcons = {
+  frontend: Globe,
+  backend: Server,
+  database: Database,
+  deployment: Cloud,
+  ai: Cpu,
+  infrastructure: Layers,
+} as const
 
 export default function Projects() {
-  const projects = [
-    {
-      number: 'project.001 / fraud-detection',
-      title: 'Temporal Motif-Aware Fraud Detection',
-      description: 'A hybrid fraud detection engine that models transactions as temporal graphs, capturing multi-hop fraud rings that rule-based systems miss entirely. XGBoost stacked on GNN embeddings for ensemble predictions with SHAP explainability.',
-      metrics: [
-        { val: '25%', key: 'false positive reduction' },
-        { val: '10+', key: 'fraud features' },
-        { val: 'GNN', key: '+ XGBoost ensemble' },
-      ],
-      tags: ['Python', 'Graph Neural Networks', 'XGBoost', 'SHAP', 'Pandas', 'NumPy'],
-      link: 'https://github.com/Kushal1213/fraud-detection',
-      glow: 'bg-gh-orange',
-      reverse: false,
-    },
-    {
-      number: 'project.002 / shopify-analytics',
-      title: 'Shopify Analytics Platform',
-      description: 'Real-time e-commerce analytics backend. Event-driven pipelines from raw webhook events to aggregated revenue dashboards with sub-second query response. Idempotency keys, retry logic, and MongoDB aggregation pipelines.',
-      metrics: [
-        { val: '5+', key: 'RESTful APIs' },
-        { val: '<1s', key: 'query response' },
-        { val: '0', key: 'data loss events' },
-      ],
-      tags: ['Node.js', 'Express.js', 'MongoDB', 'Webhooks', 'Event-Driven'],
-      link: 'https://github.com/Kushal1213/shopify',
-      glow: 'bg-gh-accent',
-      reverse: true,
-    },
-    {
-      number: 'project.003 / sleep-oracle',
-      title: 'Sleep Oracle: Health & Lifestyle Prediction',
-      description: 'End-to-end ML pipeline for predicting Insomnia and Sleep Apnea from health and lifestyle data. Random Forest classifier selected over 3 baseline models using precision, recall, and F1 benchmarks. Deployed as a Flask web app.',
-      metrics: [
-        { val: '400+', key: 'patient records' },
-        { val: '13', key: 'features' },
-        { val: '3', key: 'class prediction' },
-      ],
-      tags: ['Python', 'scikit-learn', 'Flask', 'Pandas', 'Random Forest'],
-      link: 'https://github.com/Kushal1213/Sleep-Oracle',
-      glow: 'bg-gh-purple',
-      reverse: false,
-    },
-    {
-      number: 'project.004 / querycraft',
-      title: 'QueryCraft — AI Text-to-SQL',
-      description: 'An AI-powered platform enabling non-technical users to query structured databases using plain English. Built on Google Cloud with schema-aware prompt engineering and validation pipelines. 30% accuracy improvement over baseline.',
-      metrics: [
-        { val: '30%', key: 'SQL accuracy boost' },
-        { val: 'GCP', key: 'Google Cloud powered' },
-      ],
-      tags: ['Python', 'Google Cloud AI', 'LLM', 'Prompt Engineering', 'SQL'],
-      link: 'https://github.com/Kushal1213/querycraft',
-      glow: 'bg-gh-green',
-      reverse: true,
-    },
-  ]
+  const [expandedId, setExpandedId] = useState<string | null>(null)
 
   return (
-    <section id="projects" className="relative z-10">
-      <div className="px-10 py-24 max-w-[1100px] mx-auto">
-        <motion.div
-          className="font-mono text-xs text-gh-green tracking-[0.15em] uppercase mb-3"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          // projects
-        </motion.div>
+    <section id="projects" className="section-padding relative z-10">
+      <div className="container-main">
+        <SectionHeader
+          label="// projects"
+          title="Built from scratch."
+          titleAccent="Shipped to production."
+          description="End-to-end systems solving real problems — from 500K+ transaction fraud detection to AI-powered analytics platforms. Each project includes architecture, metrics, and case study details."
+        />
 
-        <motion.h2
-          className="text-[clamp(32px,5vw,52px)] font-extrabold tracking-tight leading-tight"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Built from scratch.<br />Ships to prod.
-        </motion.h2>
-      </div>
+        <div className="space-y-8">
+          {PROJECTS.map((project, index) => {
+            const isExpanded = expandedId === project.id
 
-      {projects.map((project, index) => (
-        <div
-          key={index}
-          className={`min-h-screen flex items-center relative overflow-hidden ${index % 2 === 1 ? 'bg-gradient-to-br from-gh-bg to-[#0a1520]' : ''}`}
-        >
-          <div
-            className={`absolute w-[500px] h-[500px] top-1/2 ${project.reverse ? 'right-[-100px]' : 'left-[-100px]'} -translate-y-1/2 ${project.glow}/20 rounded-full blur-[100px] pointer-events-none`}
-          />
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(rgba(63,185,80,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(63,185,80,0.3)_1px,transparent_1px)] bg-[length:40px_40px]" />
-
-          <div className={`max-w-[1100px] mx-auto px-10 py-20 w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center ${project.reverse ? 'md:[&>*]:dir-rtl' : ''}`}>
-            <div className={project.reverse ? 'dir-ltr' : ''}>
-              <motion.div
-                className="font-mono text-[11px] text-gh-muted tracking-[0.15em] uppercase mb-3"
-                initial={{ opacity: 0, y: 20 }}
+            return (
+              <motion.article
+                key={project.id}
+                className="glass-strong rounded-2xl overflow-hidden shadow-glow"
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ delay: index * 0.08, duration: 0.5 }}
               >
-                {project.number}
-              </motion.div>
-
-              <motion.h3
-                className="text-[clamp(28px,4vw,44px)] font-extrabold tracking-tight leading-tight mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                {project.title}
-              </motion.h3>
-
-              <motion.p
-                className="text-base text-gh-muted leading-relaxed mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                {project.description}
-              </motion.p>
-
-              <motion.div
-                className="flex gap-6 mb-7 flex-wrap"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-                {project.metrics.map((metric, i) => (
-                  <div key={i} className="flex flex-col">
-                    <span className="font-mono text-xl font-bold text-gh-green">{metric.val}</span>
-                    <span className="text-xs text-gh-muted">{metric.key}</span>
+                <div className={`bg-gradient-to-br ${project.gradient} p-6 sm:p-8 border-b border-border/50`}>
+                  <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
+                    <div>
+                      <span className="font-mono text-xs text-primary tracking-widest uppercase">
+                        Project {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <h3 className="text-2xl sm:text-3xl font-bold mt-2 tracking-tight">
+                        {project.title}
+                      </h3>
+                      <p className="text-primary/90 font-medium mt-1">{project.subtitle}</p>
+                    </div>
+                    <span className="text-5xl opacity-80" aria-hidden="true">{project.icon}</span>
                   </div>
-                ))}
-              </motion.div>
-
-              <motion.div
-                className="flex flex-wrap gap-2 mb-7"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-              >
-                {project.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="font-mono text-[11px] px-2.5 py-1 bg-gh-surface border border-gh-border rounded-md text-gh-muted"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </motion.div>
-
-              <motion.a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-gh-accent font-semibold text-sm hover:gap-3 transition-all interactive"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-              >
-                View on GitHub <ExternalLink size={16} />
-              </motion.a>
-            </div>
-
-            <motion.div
-              className="bg-gh-surface border border-gh-border rounded-2xl overflow-hidden h-[380px] relative"
-              initial={{ opacity: 0, x: project.reverse ? 30 : -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="bg-gh-surface/90 border-b border-gh-border px-4 py-2.5 flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-                <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
-                <div className="w-3 h-3 rounded-full bg-[#28c840]" />
-                <span className="ml-2 font-mono text-xs text-gh-muted">project.visual</span>
-              </div>
-              <div className="p-5 h-[calc(100%-41px)] flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-3">{index === 0 ? '🔗' : index === 1 ? '📊' : index === 2 ? '😴' : '🤖'}</div>
-                  <div className="font-mono text-sm text-gh-muted">Interactive visualization</div>
+                  <p className="text-text-secondary leading-relaxed max-w-3xl">{project.summary}</p>
                 </div>
-              </div>
-            </motion.div>
-          </div>
+
+                <div className="p-6 sm:p-8 space-y-6">
+                  <div className="grid sm:grid-cols-3 gap-4">
+                    {project.metrics.map((m) => (
+                      <div key={m.label} className="glass rounded-xl p-4 text-center">
+                        <div className="text-2xl font-bold text-gradient">{m.value}</div>
+                        <div className="text-xs text-text-secondary mt-1">{m.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="glass rounded-xl p-5">
+                      <h4 className="font-semibold text-sm mb-2 text-text-primary">Problem</h4>
+                      <p className="text-sm text-text-secondary leading-relaxed">{project.problem}</p>
+                    </div>
+                    <div className="glass rounded-xl p-5">
+                      <h4 className="font-semibold text-sm mb-2 text-text-primary">Solution</h4>
+                      <p className="text-sm text-text-secondary leading-relaxed">{project.solution}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-sm mb-3 text-text-primary">Architecture</h4>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {(Object.entries(project.architecture) as [keyof typeof archIcons, string[]][]).map(
+                        ([key, items]) => {
+                          const Icon = archIcons[key]
+                          return (
+                            <div key={key} className="glass rounded-xl p-4">
+                              <div className="flex items-center gap-2 mb-2">
+                                <Icon size={14} className="text-primary" />
+                                <span className="font-mono text-[10px] uppercase tracking-wider text-primary">
+                                  {key}
+                                </span>
+                              </div>
+                              <ul className="space-y-1">
+                                {items.map((item) => (
+                                  <li key={item} className="text-xs text-text-secondary">{item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )
+                        }
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-sm mb-3 text-text-primary">Key Features</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.features.map((f) => (
+                        <span
+                          key={f}
+                          className="font-mono text-xs px-3 py-1.5 glass rounded-lg text-text-secondary"
+                        >
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-mono text-xs px-3 py-1 bg-primary/10 text-primary rounded-lg"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-4 pt-2">
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl font-semibold text-sm interactive group"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Github size={16} />
+                      GitHub
+                      <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                    </motion.a>
+
+                    <button
+                      onClick={() => setExpandedId(isExpanded ? null : project.id)}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 glass rounded-xl font-semibold text-sm hover:bg-surface-hover interactive"
+                      aria-expanded={isExpanded}
+                    >
+                      Case Study
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                  </div>
+
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="grid md:grid-cols-2 gap-4 pt-4 border-t border-border/50">
+                          {[
+                            { title: 'Research', content: project.caseStudy.research },
+                            { title: 'Approach', content: project.caseStudy.approach },
+                            { title: 'Tradeoffs', content: project.caseStudy.tradeoffs },
+                            { title: 'Optimizations', content: project.caseStudy.optimizations },
+                            { title: 'Learnings', content: project.caseStudy.learnings },
+                            { title: 'Future Improvements', content: project.caseStudy.future },
+                          ].map((item) => (
+                            <div key={item.title} className="glass rounded-xl p-5">
+                              <h5 className="font-semibold text-sm text-primary mb-2">{item.title}</h5>
+                              <p className="text-sm text-text-secondary leading-relaxed">{item.content}</p>
+                            </div>
+                          ))}
+                          <div className="md:col-span-2 glass rounded-xl p-5">
+                            <h5 className="font-semibold text-sm text-primary mb-3">Challenges</h5>
+                            <ul className="space-y-2">
+                              {project.challenges.map((c) => (
+                                <li key={c} className="text-sm text-text-secondary pl-4 relative before:content-['›'] before:absolute before:left-0 before:text-primary">
+                                  {c}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="md:col-span-2 glass rounded-xl p-5">
+                            <h5 className="font-semibold text-sm text-primary mb-3">Results</h5>
+                            <ul className="space-y-2">
+                              {project.results.map((r) => (
+                                <li key={r} className="text-sm text-text-secondary pl-4 relative before:content-['✓'] before:absolute before:left-0 before:text-success">
+                                  {r}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.article>
+            )
+          })}
         </div>
-      ))}
+      </div>
     </section>
   )
 }

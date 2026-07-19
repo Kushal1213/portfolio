@@ -1,69 +1,55 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 export default function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [ringPosition, setRingPosition] = useState({ x: 0, y: 0 })
+  const [enabled, setEnabled] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const ringX = useSpring(mouseX, { stiffness: 200, damping: 25 })
+  const ringY = useSpring(mouseY, { stiffness: 200, damping: 25 })
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-      
-      // Smooth follow for ring
-      setTimeout(() => {
-        setRingPosition({ x: e.clientX, y: e.clientY })
-      }, 50)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isFinePointer = window.matchMedia('(pointer: fine)').matches
+    setEnabled(!prefersReduced && isFinePointer)
+
+    const handleMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX)
+      mouseY.set(e.clientY)
     }
 
-    const handleMouseOver = (e: MouseEvent) => {
+    const handleOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      if (
-        target.tagName === 'A' ||
-        target.tagName === 'BUTTON' ||
-        target.closest('a') ||
-        target.closest('button') ||
-        target.closest('.interactive')
-      ) {
-        setIsHovering(true)
-      }
+      setIsHovering(
+        !!target.closest('a, button, .interactive, input, textarea, select')
+      )
     }
 
-    const handleMouseOut = () => {
-      setIsHovering(false)
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('mouseover', handleMouseOver)
-    window.addEventListener('mouseout', handleMouseOut)
-
+    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('mouseover', handleOver)
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('mouseover', handleMouseOver)
-      window.removeEventListener('mouseout', handleMouseOut)
+      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('mouseover', handleOver)
     }
-  }, [])
+  }, [mouseX, mouseY])
+
+  if (!enabled) return null
 
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-gh-green rounded-full pointer-events-none z-[9999] mix-blend-screen"
-        animate={{
-          x: mousePosition.x - 6,
-          y: mousePosition.y - 6,
-          scale: isHovering ? 1.5 : 1,
-        }}
-        transition={{ type: 'spring', stiffness: 500, damping: 28 }}
+        className="fixed top-0 left-0 w-2 h-2 bg-primary rounded-full pointer-events-none z-[9999] mix-blend-screen"
+        style={{ x: ringX, y: ringY, translateX: '-50%', translateY: '-50%' }}
+        animate={{ scale: isHovering ? 1.8 : 1 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
       />
       <motion.div
-        className="fixed top-0 left-0 w-9 h-9 border border-gh-green rounded-full pointer-events-none z-[9998] opacity-50"
-        animate={{
-          x: ringPosition.x - 18,
-          y: ringPosition.y - 18,
-          scale: isHovering ? 1.5 : 1,
-        }}
+        className="fixed top-0 left-0 w-8 h-8 border border-primary/40 rounded-full pointer-events-none z-[9998]"
+        style={{ x: ringX, y: ringY, translateX: '-50%', translateY: '-50%' }}
+        animate={{ scale: isHovering ? 1.6 : 1, opacity: isHovering ? 0.8 : 0.4 }}
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
       />
     </>
