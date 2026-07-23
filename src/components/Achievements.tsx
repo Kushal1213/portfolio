@@ -1,67 +1,46 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Award, Trophy, GraduationCap, Github } from 'lucide-react'
-import SectionHeader from '@/components/ui/SectionHeader'
+import { motion, useReducedMotion } from 'framer-motion'
+import { Award } from 'lucide-react'
 import { ACHIEVEMENTS } from '@/data/portfolio'
 
-const categoryIcons = {
-  Certifications: Award,
-  'Open Source': Github,
-  Academic: GraduationCap,
-}
+const normalizeDashes = (value: string) => value.replace(/[—–·]/g, '-')
 
 export default function Achievements() {
+  const reduceMotion = useReducedMotion()
+  const certifications = ACHIEVEMENTS.find((group) => group.category === 'Certifications')?.items ?? []
+
   return (
-    <section id="achievements" className="section-padding relative z-10">
-      <div className="container-main">
-        <SectionHeader
-          label="// achievements"
-          title="Verified"
-          titleAccent="credentials."
-          description="Industry certifications, open-source contributions, and academic milestones — all verified and documented."
-        />
-
-        <div className="space-y-10">
-          {ACHIEVEMENTS.map((group, gi) => {
-            const Icon = categoryIcons[group.category as keyof typeof categoryIcons] ?? Trophy
-
-            return (
-              <motion.div
-                key={group.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: gi * 0.1 }}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Icon className="text-primary" size={18} />
-                  </div>
-                  <h3 className="text-lg font-semibold">{group.category}</h3>
-                </div>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {group.items.map((item, i) => (
-                    <motion.div
-                      key={item.title}
-                      className="glass rounded-xl p-5 hover:bg-surface-hover interactive"
-                      initial={{ opacity: 0, y: 12 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.05 }}
-                      whileHover={{ y: -2 }}
-                    >
-                      <p className="font-semibold text-sm leading-snug mb-2">{item.title}</p>
-                      <p className="text-xs text-text-secondary">{item.issuer}</p>
-                      <p className="font-mono text-[10px] text-primary mt-3">{item.year}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            )
-          })}
+    <section className="section-padding border-t site-rule">
+      <div className="container-main grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <div>
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)] text-[var(--accent-ink)]">
+            <Award size={23} aria-hidden="true" />
+          </div>
+          <h2 className="mt-6 max-w-sm text-4xl font-extrabold leading-[0.98] tracking-[-0.065em] sm:text-5xl">
+            Credentials with range.
+          </h2>
+          <p className="mt-5 max-w-md text-lg leading-8 site-muted">
+            Cloud, data science, and generative AI learning verified through industry programs.
+          </p>
         </div>
+
+        <ol className="grid gap-x-10 sm:grid-cols-2">
+          {certifications.map((credential, index) => (
+            <motion.li
+              key={credential.title}
+              className="border-t py-6 site-rule"
+              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ delay: index * 0.045, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <p className="text-sm font-semibold site-accent">{credential.year}</p>
+              <h3 className="mt-2 font-extrabold leading-6 tracking-[-0.025em]">{normalizeDashes(credential.title)}</h3>
+              <p className="mt-2 text-sm leading-6 site-muted">{normalizeDashes(credential.issuer)}</p>
+            </motion.li>
+          ))}
+        </ol>
       </div>
     </section>
   )

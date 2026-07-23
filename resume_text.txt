@@ -1,0 +1,55 @@
+Kushal Choudhary 
+(+91) 8619299156  |  kushalchoudhary1213@gmail.com  |  LinkedIn  |  GitHub  |  Portfolio 
+PROFESSIONAL SUMMARY  
+AI ML focused Computer Science graduate with a strong foundation in Machine Learning (ML), Generative AI, data analytics, and 
+intelligent systems. Experienced in building AI powered applications, developing and evaluating machine learning models, and 
+applying data driven solutions to solve real world business problems. Skilled in cross functional collaboration, model deployment, 
+and translating technical results into measurable business impact. Passionate about learning emerging technologies and delivering 
+practical, scalable AI solutions. 
+EDUCATION  
+Vellore Institute of Technology (VIT) Chennai, Tamil Nadu 
+B.Tech in Computer Science with Minors in Artificial Intelligence & Robotics, CGPA: 7.92 2022 – 2026 
+TECHNICAL SKILLS  
+Programming: Python, SQL 
+Machine Learning: NumPy, Pandas, Scikit-learn, Supervised & Unsupervised Learning, Neural Networks, Classification & Regression, 
+Explainable AI (XAI) 
+Generative AI: Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), LangChain, Vector Databases, Embeddings, 
+Prompt Engineering 
+Databases: MySQL, MongoDB, SQLite, Pinecone 
+Cloud & Tools: Amazon Web Services (AWS), Oracle Cloud Infrastructure (OCI), Git, Docker, Postman 
+PROJECTS  
+Temporal Motif Aware Fraud Detection System   Live Demo  GitHub 
+Python, Graph Neural Networks, XGBoost, SHAP, Pinecone 
+● Engineered an end to end fraud detection pipeline on 500K+ transactions from the IEEE CIS dataset, combining Graph Neural 
+Network (GNN) embeddings with XGBoost to improve detection accuracy by 25% over baseline models. 
+● Applied SHAP for explainable, per transaction fraud predictions and indexed graph embeddings in a Pinecone vector database, 
+enabling sub second similarity search across historical transactions. 
+Xeno Analytics Platform   Live Demo  GitHub 
+Python, Random Forest, K-Means, Node.js, MongoDB 
+● Built and deployed a Random Forest sales forecasting model and a K Means customer segmentation model for merchants, driving 
+data driven inventory planning and targeted marketing strategies. 
+● Benchmarked multiple machine learning models on live transaction data and deployed top performing models to production, 
+delivering real time analytics through a Node.js and MongoDB backend. 
+Sleep Oracle: Health & Lifestyle Prediction System   Live Demo  GitHub 
+Python, Scikit-learn, Flask, Pandas 
+● Trained and validated a Random Forest classifier on 400+ patient records across 13 health features, selected for the best 
+Precision, Recall, and F1 score among all models evaluated. 
+● Deployed the model as a Flask web application, enabling real time sleep disorder risk prediction for end users. 
+TECHNICAL CONTRIBUTION  
+Open Source 
+Contributor – AMD Lemonade SDK   GitHub  Jan 2026 – Present 
+● Contributed to AMD's open source AI inference server, covering backend improvements, documentation, and manually 
+identifying and resolving multiple backend and test coverage bugs. 
+● Bugs Identified: Issues 
+● Merged PRs: Pull Requests 
+Workshop 
+Generative AI Trainee -- SmartBridge   Live Demo  May 2025 – Jul 2025 
+● Developed QueryCraft, an AI powered Text to SQL platform on Google Cloud, leading prompt engineering and schema grounding 
+efforts that improved SQL generation accuracy by 30%, and evaluated the NLP pipeline across enterprise database schemas. 
+● Certificate  |  Project Certificate 
+CERTIFICATIONS  
+Oracle Cloud Infrastructure 2025 Certified Data Science Professional View Credential 
+Oracle Cloud Infrastructure Generative AI Professional View Credential 
+Oracle Cloud Infrastructure AI Foundations Associate View Credential 
+Oracle Agentic AI Certified Foundations Associate View Credential 
+Google Cloud Skills Boost – Generative AI Learning Path  View Credential 

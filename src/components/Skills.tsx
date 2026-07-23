@@ -1,44 +1,49 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import SectionHeader from '@/components/ui/SectionHeader'
+import { motion, useReducedMotion } from 'framer-motion'
 import { SKILL_CATEGORIES } from '@/data/portfolio'
 
 export default function Skills() {
-  return (
-    <section id="skills" className="section-padding relative z-10">
-      <div className="container-main">
-        <SectionHeader
-          label="// skills"
-          title="Technical"
-          titleAccent="arsenal."
-          description="Categorized by domain with experience levels — no arbitrary percentages, just honest assessment of where I've built, deployed, and contributed."
-        />
+  const reduceMotion = useReducedMotion()
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {SKILL_CATEGORIES.map((category, index) => (
-            <motion.div
-              key={category.label}
-              className="glass rounded-2xl p-5 hover:bg-surface-hover interactive group"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.04 }}
-              whileHover={{ y: -3 }}
-            >
-              <p className="font-mono text-[10px] text-primary tracking-widest uppercase mb-4">
-                {category.label}
-              </p>
-              <div className="space-y-2.5">
-                {category.skills.map((skill) => (
-                  <div key={skill.name} className="flex flex-col gap-0.5">
-                    <span className="text-sm font-medium text-text-primary">{skill.name}</span>
-                    <span className="text-[11px] text-text-tertiary font-mono">{skill.level}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+  return (
+    <section id="skills" className="section-padding border-t site-rule">
+      <div className="container-main">
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+          <div>
+            <h2 className="max-w-md text-4xl font-extrabold leading-[0.98] tracking-[-0.065em] sm:text-5xl lg:text-6xl">
+              Tools, but in context.
+            </h2>
+            <p className="mt-5 max-w-md text-lg leading-8 site-muted">
+              A practical stack shaped by projects, deployments, open source, and deliberate study.
+            </p>
+          </div>
+
+          <div className="grid gap-x-10 lg:grid-cols-2">
+            {SKILL_CATEGORIES.map((category, index) => (
+              <motion.article
+                key={category.label}
+                className="border-t py-6 site-rule"
+                initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ delay: index * 0.035, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <h3 className="font-extrabold tracking-[-0.025em]">{category.label}</h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill.name}
+                      title={skill.level}
+                      className="rounded-md border px-2.5 py-1.5 text-sm font-medium site-rule site-muted transition-colors hover:border-[var(--accent)] hover:text-[var(--ink)]"
+                    >
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

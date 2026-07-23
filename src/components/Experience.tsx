@@ -1,101 +1,102 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Briefcase, Calendar, MapPin, ExternalLink } from 'lucide-react'
-import SectionHeader from '@/components/ui/SectionHeader'
-import { EXPERIENCE } from '@/data/portfolio'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ArrowUpRight, GitPullRequest, Wrench } from 'lucide-react'
+import { EXPERIENCE, OPEN_SOURCE } from '@/data/portfolio'
+
+const normalizeDashes = (value: string) => value.replace(/[—–]/g, '-')
 
 export default function Experience() {
+  const reduceMotion = useReducedMotion()
+
   return (
-    <section id="experience" className="section-padding relative z-10 bg-bg-secondary/30">
+    <section id="experience" className="section-padding" style={{ backgroundColor: 'var(--canvas-deep)' }}>
       <div className="container-main">
-        <SectionHeader
-          label="// experience"
-          title="Professional"
-          titleAccent="journey."
-          description="From competitive AI externships to open-source contributions at AMD — hands-on experience building and improving production-grade systems."
-        />
+        <div className="max-w-2xl">
+          <h2 className="text-4xl font-extrabold leading-[0.98] tracking-[-0.065em] sm:text-5xl lg:text-6xl">
+            Building in public and in production.
+          </h2>
+          <p className="mt-5 text-lg leading-8 site-muted">
+            Experiences that sharpened how I test, document, and improve real systems.
+          </p>
+        </div>
 
-        <div className="relative space-y-8">
-          <div className="absolute left-[1.125rem] top-4 bottom-4 w-px bg-gradient-to-b from-primary via-secondary/50 to-transparent hidden md:block" />
-
-          {EXPERIENCE.map((exp, index) => (
-            <motion.div
-              key={exp.role}
-              className="relative md:pl-14"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+        <div className="mt-12 grid gap-x-16 gap-y-10 lg:grid-cols-2">
+          {EXPERIENCE.map((experience, index) => (
+            <motion.article
+              key={experience.role}
+              className="border-t pt-6 site-rule"
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ delay: index * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div
-                className={`absolute left-3 top-7 w-3.5 h-3.5 rounded-full border-2 hidden md:block ${
-                  exp.highlight
-                    ? 'bg-primary border-primary shadow-[0_0_16px_rgba(99,102,241,0.5)]'
-                    : 'bg-surface border-primary/60'
-                }`}
-              />
-
-              <motion.div
-                className={`glass rounded-2xl p-7 hover:bg-surface-hover interactive ${
-                  exp.highlight ? 'shadow-glow border-primary/20' : ''
-                }`}
-                whileHover={{ y: -3 }}
-              >
-                <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
-                  <div className="flex items-start gap-4">
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${
-                      exp.highlight ? 'bg-primary/15' : 'bg-surface'
-                    }`}>
-                      <Briefcase className={exp.highlight ? 'text-primary' : 'text-text-secondary'} size={20} />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold">{exp.role}</h3>
-                      {exp.companyUrl ? (
-                        <a
-                          href={exp.companyUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary font-medium text-sm inline-flex items-center gap-1 hover:underline"
-                        >
-                          {exp.company}
-                          <ExternalLink size={12} />
-                        </a>
-                      ) : (
-                        <p className="text-primary font-medium text-sm">{exp.company}</p>
-                      )}
-                    </div>
-                  </div>
-                  {exp.highlight && (
-                    <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-mono rounded-full">
-                      Current
-                    </span>
-                  )}
-                </div>
-
-                <div className="flex flex-wrap gap-4 mb-5 text-sm text-text-secondary">
-                  <span className="flex items-center gap-1.5">
-                    <Calendar size={14} />
-                    {exp.date}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <MapPin size={14} />
-                    {exp.location}
-                  </span>
-                </div>
-
-                <ul className="space-y-2.5">
-                  {exp.bullets.map((bullet) => (
-                    <li key={bullet.slice(0, 40)} className="text-sm text-text-secondary pl-4 relative leading-relaxed">
-                      <span className="absolute left-0 text-primary font-mono text-xs">›</span>
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </motion.div>
+              <p className="text-sm font-semibold site-accent">{normalizeDashes(experience.date)}</p>
+              <h3 className="mt-3 text-2xl font-extrabold tracking-[-0.045em]">{experience.role}</h3>
+              {experience.companyUrl ? (
+                <a href={experience.companyUrl} target="_blank" rel="noreferrer" className="site-link mt-1 inline-flex items-center gap-1.5 text-sm font-bold">
+                  {experience.company}
+                  <ArrowUpRight size={15} aria-hidden="true" />
+                </a>
+              ) : (
+                <p className="mt-1 text-sm font-bold site-muted">{experience.company}</p>
+              )}
+              <ul className="mt-6 space-y-3">
+                {experience.bullets.map((bullet) => (
+                  <li key={bullet} className="grid grid-cols-[10px_1fr] gap-3 text-sm leading-6 site-muted">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true" />
+                    {normalizeDashes(bullet)}
+                  </li>
+                ))}
+              </ul>
+            </motion.article>
           ))}
         </div>
+
+        <motion.div
+          className="site-panel mt-16 rounded-2xl p-6 sm:p-9"
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <div>
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent)] text-[var(--accent-ink)]">
+                  <Wrench size={19} aria-hidden="true" />
+                </div>
+                <p className="font-extrabold tracking-[-0.035em]">Open source at AMD Lemonade SDK</p>
+              </div>
+              <p className="mt-5 max-w-md leading-7 site-muted">
+                Contributions focused on production endpoint coverage, documentation, and surfacing issues that made the test suite more trustworthy.
+              </p>
+              <a href={OPEN_SOURCE.repoUrl} target="_blank" rel="noreferrer" className="site-link mt-6 inline-flex items-center gap-2 text-sm font-bold">
+                Visit the repository
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-3">
+              {OPEN_SOURCE.stats.map((stat, index) => (
+                <div key={stat.label} className={index > 0 ? 'border-l pl-5 site-rule' : ''}>
+                  <p className="text-3xl font-extrabold tracking-[-0.055em]">{stat.value}</p>
+                  <p className="mt-1 text-sm leading-5 site-muted">{stat.label}</p>
+                </div>
+              ))}
+              <div className="sm:col-span-3 border-t pt-5 site-rule">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {OPEN_SOURCE.contributions.map((item) => (
+                    <div key={item.title} className="flex gap-3 text-sm leading-6 site-muted">
+                      <GitPullRequest className="mt-1 shrink-0 site-accent" size={15} aria-hidden="true" />
+                      <span>{item.title}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

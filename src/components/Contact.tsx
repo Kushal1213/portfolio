@@ -1,188 +1,134 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import {
-  Mail,
-  Github,
-  Linkedin,
-  Phone,
-  Download,
-  MapPin,
-  Send,
-  ExternalLink,
-  CheckCircle,
-} from 'lucide-react'
-import SectionHeader from '@/components/ui/SectionHeader'
-import CopyButton from '@/components/ui/CopyButton'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ArrowUpRight, Github, Linkedin, Mail, Send } from 'lucide-react'
 import { SITE } from '@/data/portfolio'
 
-export default function Contact() {
-  const [formState, setFormState] = useState({ name: '', email: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
+type FormState = {
+  name: string
+  email: string
+  message: string
+}
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const subject = encodeURIComponent(`Portfolio Contact from ${formState.name}`)
-    const body = encodeURIComponent(
-      `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`
-    )
+export default function Contact() {
+  const reduceMotion = useReducedMotion()
+  const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' })
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setStatus('error')
+      return
+    }
+
+    const subject = encodeURIComponent(`Portfolio inquiry from ${form.name.trim()}`)
+    const body = encodeURIComponent(`Name: ${form.name.trim()}\nEmail: ${form.email.trim()}\n\n${form.message.trim()}`)
     window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
+    setStatus('success')
   }
 
-  const links = [
-    { icon: Github, label: 'GitHub', href: SITE.urls.github, handle: '@Kushal1213' },
-    { icon: Linkedin, label: 'LinkedIn', href: SITE.urls.linkedin, handle: 'Connect' },
-    { icon: ExternalLink, label: 'LeetCode', href: SITE.urls.leetcode, handle: '@kushal_choudhary' },
-  ]
-
   return (
-    <section id="contact" className="section-padding relative z-10 bg-bg-secondary/30">
+    <section id="contact" className="section-padding" style={{ backgroundColor: 'var(--canvas-deep)' }}>
       <div className="container-main">
-        <SectionHeader
-          label="// contact"
-          title="Let's build"
-          titleAccent="something great."
-          description="Open to software engineering internships and full-time roles. Reach out for collaborations, interviews, or technical conversations."
-          align="center"
-        />
+        <div className="max-w-2xl">
+          <h2 className="text-4xl font-extrabold leading-[0.98] tracking-[-0.065em] sm:text-5xl lg:text-6xl">
+            Let&apos;s build something that holds up.
+          </h2>
+          <p className="mt-5 text-lg leading-8 site-muted">
+            I am open to software engineering roles, internships, and thoughtful technical collaborations.
+          </p>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
-          <motion.div
-            className="space-y-5"
-            initial={{ opacity: 0, x: -20 }}
+        <div className="mt-12 grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+          <motion.aside
+            initial={reduceMotion ? false : { opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="glass rounded-2xl p-6 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Mail className="text-primary" size={20} />
-                </div>
-                <div>
-                  <p className="text-sm text-text-secondary">Email</p>
-                  <a href={`mailto:${SITE.email}`} className="font-medium hover:text-primary transition-colors">
-                    {SITE.email}
-                  </a>
-                </div>
-              </div>
-              <CopyButton text={SITE.email} label="Copy Email" />
+            <p className="site-kicker">Direct contact</p>
+            <a className="site-link mt-4 inline-flex break-all text-xl font-extrabold tracking-[-0.04em] sm:text-2xl" href={`mailto:${SITE.email}`}>
+              {SITE.email}
+            </a>
+            <p className="mt-4 max-w-sm leading-7 site-muted">{SITE.availability.replace('·', '-')}</p>
 
-              <div className="flex items-center gap-3 pt-2">
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Phone className="text-primary" size={20} />
-                </div>
-                <div>
-                  <p className="text-sm text-text-secondary">Phone</p>
-                  <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} className="font-medium hover:text-primary transition-colors">
-                    {SITE.phone}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 pt-2">
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <MapPin className="text-primary" size={20} />
-                </div>
-                <div>
-                  <p className="text-sm text-text-secondary">Location & Availability</p>
-                  <p className="font-medium">{SITE.location}</p>
-                  <p className="text-xs text-text-tertiary mt-0.5">{SITE.availability}</p>
-                </div>
-              </div>
+            <div className="mt-9 space-y-3">
+              <a className="site-link flex items-center justify-between border-t py-3 text-sm font-bold site-rule" href={SITE.urls.github} target="_blank" rel="noreferrer">
+                <span className="inline-flex items-center gap-2"><Github size={17} aria-hidden="true" /> GitHub</span>
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+              <a className="site-link flex items-center justify-between border-t py-3 text-sm font-bold site-rule" href={SITE.urls.linkedin} target="_blank" rel="noreferrer">
+                <span className="inline-flex items-center gap-2"><Linkedin size={17} aria-hidden="true" /> LinkedIn</span>
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+              <a className="site-link flex items-center justify-between border-y py-3 text-sm font-bold site-rule" href={SITE.urls.leetcode} target="_blank" rel="noreferrer">
+                <span>LeetCode</span>
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
             </div>
-
-            <div className="flex flex-wrap gap-3">
-              {links.map(({ icon: Icon, label, href, handle }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 glass rounded-xl text-sm hover:bg-surface-hover interactive"
-                  whileHover={{ scale: 1.02, y: -1 }}
-                >
-                  <Icon size={16} className="text-primary" />
-                  <span className="font-medium">{label}</span>
-                  <span className="text-text-tertiary text-xs">{handle}</span>
-                </motion.a>
-              ))}
-            </div>
-
-            <motion.a
-              href={SITE.resumeUrl}
-              download
-              className="inline-flex items-center gap-2 px-6 py-3 glass rounded-xl font-semibold hover:bg-surface-hover interactive w-full justify-center sm:w-auto"
-              whileHover={{ scale: 1.02 }}
-            >
-              <Download size={18} />
-              Download Resume
-            </motion.a>
-          </motion.div>
+          </motion.aside>
 
           <motion.form
+            noValidate
             onSubmit={handleSubmit}
-            className="glass-strong rounded-2xl p-7 space-y-5 shadow-glow"
-            initial={{ opacity: 0, x: 20 }}
+            className="site-panel rounded-2xl p-6 sm:p-9"
+            initial={reduceMotion ? false : { opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
-              <input
-                id="name"
-                type="text"
-                required
-                value={formState.name}
-                onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                className="w-full px-4 py-3 bg-bg-primary border border-border rounded-xl text-sm focus:border-primary/50 focus:outline-none transition-colors"
-                placeholder="Your name"
-              />
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className="grid gap-2 text-sm font-bold" htmlFor="name">
+                Name
+                <input
+                  id="name"
+                  name="name"
+                  value={form.name}
+                  onChange={(event) => setForm({ ...form, name: event.target.value })}
+                  className="rounded-xl border bg-transparent px-4 py-3.5 font-medium outline-none site-rule placeholder:text-[var(--quiet)] focus:border-[var(--accent)]"
+                  placeholder="Your name"
+                  autoComplete="name"
+                />
+              </label>
+              <label className="grid gap-2 text-sm font-bold" htmlFor="email">
+                Email
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={(event) => setForm({ ...form, email: event.target.value })}
+                  className="rounded-xl border bg-transparent px-4 py-3.5 font-medium outline-none site-rule placeholder:text-[var(--quiet)] focus:border-[var(--accent)]"
+                  placeholder="name@company.com"
+                  autoComplete="email"
+                />
+              </label>
             </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
-              <input
-                id="email"
-                type="email"
-                required
-                value={formState.email}
-                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                className="w-full px-4 py-3 bg-bg-primary border border-border rounded-xl text-sm focus:border-primary/50 focus:outline-none transition-colors"
-                placeholder="you@company.com"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+            <label className="mt-5 grid gap-2 text-sm font-bold" htmlFor="message">
+              What are you working on?
               <textarea
                 id="message"
-                required
-                rows={4}
-                value={formState.message}
-                onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                className="w-full px-4 py-3 bg-bg-primary border border-border rounded-xl text-sm focus:border-primary/50 focus:outline-none transition-colors resize-none"
-                placeholder="Tell me about the opportunity..."
+                name="message"
+                value={form.message}
+                onChange={(event) => setForm({ ...form, message: event.target.value })}
+                className="min-h-36 resize-y rounded-xl border bg-transparent px-4 py-3.5 font-medium outline-none site-rule placeholder:text-[var(--quiet)] focus:border-[var(--accent)]"
+                placeholder="A short note is perfect."
               />
+            </label>
+
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <button type="submit" className="site-button-primary">
+                {status === 'success' ? <Mail size={17} aria-hidden="true" /> : <Send size={17} aria-hidden="true" />}
+                {status === 'success' ? 'Email draft ready' : 'Open email draft'}
+              </button>
+              <p className="text-sm site-muted" aria-live="polite">
+                {status === 'error' && 'Please complete each field before opening your email app.'}
+                {status === 'success' && 'Your email app should now have a ready-to-send draft.'}
+              </p>
             </div>
-            <motion.button
-              type="submit"
-              className="w-full px-6 py-3.5 bg-primary text-white rounded-xl font-semibold flex items-center justify-center gap-2 interactive"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {submitted ? (
-                <>
-                  <CheckCircle size={18} />
-                  Opening email client...
-                </>
-              ) : (
-                <>
-                  <Send size={18} />
-                  Send Message
-                </>
-              )}
-            </motion.button>
           </motion.form>
         </div>
       </div>

@@ -1,104 +1,75 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { GraduationCap, Calendar, BookOpen, Award, MapPin } from 'lucide-react'
-import SectionHeader from '@/components/ui/SectionHeader'
-import { EDUCATION } from '@/data/portfolio'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ArrowUpRight, BookOpen, GraduationCap } from 'lucide-react'
+import { EDUCATION, LEETCODE } from '@/data/portfolio'
+
+const normalizeDashes = (value: string) => value.replace(/[—–]/g, '-')
 
 export default function Education() {
+  const reduceMotion = useReducedMotion()
+
   return (
-    <section id="education" className="section-padding relative z-10 bg-bg-secondary/30">
+    <section id="education" className="section-padding" style={{ backgroundColor: 'var(--canvas-deep)' }}>
       <div className="container-main">
-        <SectionHeader
-          label="// education"
-          title="Academic"
-          titleAccent="foundation."
-          description="Strong theoretical CS foundation with AI/ML specialization, complemented by hands-on project and open-source experience."
-        />
+        <div className="max-w-2xl">
+          <h2 className="text-4xl font-extrabold leading-[0.98] tracking-[-0.065em] sm:text-5xl lg:text-6xl">
+            Foundations worth building on.
+          </h2>
+          <p className="mt-5 text-lg leading-8 site-muted">
+            Computer science fundamentals paired with a focused minor in AI and robotics.
+          </p>
+        </div>
 
         <motion.div
-          className="glass-strong rounded-2xl p-7 sm:p-10 shadow-glow mb-10"
-          initial={{ opacity: 0, y: 24 }}
+          className="site-panel mt-12 rounded-2xl p-6 sm:p-9"
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="grid lg:grid-cols-2 gap-10">
-            <div className="space-y-5">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <GraduationCap className="text-primary" size={24} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold">{EDUCATION.degree}</h3>
-                  <p className="text-text-secondary mt-1">{EDUCATION.specialization}</p>
-                </div>
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)] text-[var(--accent-ink)]">
+                <GraduationCap size={24} aria-hidden="true" />
               </div>
-
-              <div className="space-y-3 text-sm">
-                <div className="flex items-center gap-3 text-text-secondary">
-                  <BookOpen size={16} className="text-primary flex-shrink-0" />
-                  {EDUCATION.institution}
+              <h3 className="mt-6 text-2xl font-extrabold tracking-[-0.045em]">{EDUCATION.degree}</h3>
+              <p className="mt-2 leading-7 site-muted">{EDUCATION.specialization}</p>
+              <dl className="mt-7 space-y-3 text-sm">
+                <div className="flex items-start justify-between gap-5 border-t pt-3 site-rule">
+                  <dt className="site-muted">Institution</dt>
+                  <dd className="text-right font-semibold">{EDUCATION.institution}</dd>
                 </div>
-                <div className="flex items-center gap-3 text-text-secondary">
-                  <MapPin size={16} className="text-primary flex-shrink-0" />
-                  {EDUCATION.location}
+                <div className="flex items-start justify-between gap-5 border-t pt-3 site-rule">
+                  <dt className="site-muted">Timeline</dt>
+                  <dd className="text-right font-semibold">{normalizeDashes(EDUCATION.period)}</dd>
                 </div>
-                <div className="flex items-center gap-3 text-text-secondary">
-                  <Calendar size={16} className="text-primary flex-shrink-0" />
-                  {EDUCATION.period} · {EDUCATION.graduation}
+                <div className="flex items-start justify-between gap-5 border-t pt-3 site-rule">
+                  <dt className="site-muted">Current CGPA</dt>
+                  <dd className="text-right font-semibold">{EDUCATION.cgpa}</dd>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Award size={16} className="text-primary flex-shrink-0" />
-                  <span className="text-text-secondary">
-                    CGPA: <span className="text-text-primary font-semibold">{EDUCATION.cgpa}</span>
-                  </span>
-                </div>
-              </div>
+              </dl>
             </div>
 
-            <div>
-              <h4 className="font-semibold mb-4 flex items-center gap-2">
-                <BookOpen size={18} className="text-primary" />
-                Relevant Coursework
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {EDUCATION.coursework.map((course, i) => (
-                  <motion.span
-                    key={course}
-                    className="px-3 py-1.5 glass rounded-lg text-sm text-text-secondary hover:text-text-primary transition-colors"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.03 }}
-                  >
+            <div className="lg:pt-1">
+              <div className="flex items-center gap-2">
+                <BookOpen size={18} className="site-accent" aria-hidden="true" />
+                <h3 className="font-extrabold tracking-[-0.025em]">Relevant coursework</h3>
+              </div>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {EDUCATION.coursework.map((course) => (
+                  <span key={course} className="rounded-md border px-2.5 py-1.5 text-sm site-rule site-muted">
                     {course}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
+              <a href={LEETCODE.profileUrl} target="_blank" rel="noreferrer" className="site-link mt-9 inline-flex items-center gap-2 text-sm font-bold">
+                {LEETCODE.total} problems solved on LeetCode
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
             </div>
           </div>
         </motion.div>
-
-        <div className="grid sm:grid-cols-3 gap-5">
-          {[
-            { value: EDUCATION.cgpa, label: 'Current CGPA', icon: Award },
-            { value: '2026', label: 'Expected Graduation', icon: Calendar },
-            { value: `${EDUCATION.coursework.length}+`, label: 'Technical Courses', icon: BookOpen },
-          ].map((item, i) => (
-            <motion.div
-              key={item.label}
-              className="glass rounded-xl p-5 text-center hover:bg-surface-hover interactive"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 + i * 0.08 }}
-            >
-              <item.icon className="text-primary mx-auto mb-2" size={22} />
-              <div className="text-2xl font-bold text-gradient">{item.value}</div>
-              <div className="text-sm text-text-secondary mt-1">{item.label}</div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   )
