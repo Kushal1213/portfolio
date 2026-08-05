@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, GitPullRequest } from 'lucide-react'
+import { ArrowUpRight, GitPullRequest } from '@phosphor-icons/react'
 import { EXPERIENCE, OPEN_SOURCE } from '@/data/portfolio'
 
 const normalizeDashes = (value: string) => value.replace(/[—–]/g, '-')
@@ -13,10 +13,10 @@ export default function Experience() {
     <section id="experience" className="section-padding" style={{ backgroundColor: 'var(--canvas-deep)' }}>
       <div className="container-main">
         <div className="max-w-2xl">
-          <h2 className="text-4xl font-extrabold leading-[0.98] tracking-[-0.065em] sm:text-5xl lg:text-6xl">
+          <h2 className="text-4xl font-extrabold leading-[0.98] tracking-[-0.065em] text-balance sm:text-5xl lg:text-6xl">
             Building in public and in production.
           </h2>
-          <p className="mt-5 text-lg leading-8 site-muted">
+          <p className="mt-5 max-w-[65ch] text-lg leading-8 site-muted">
             Experiences that sharpened how I test, document, and improve real systems.
           </p>
         </div>
@@ -31,7 +31,7 @@ export default function Experience() {
                 initial={reduceMotion ? false : { opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
-                transition={{ delay: index * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ delay: index * 0.08, duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
               >
                 <div className="relative z-[1] mt-1.5 h-3.5 w-3.5 rounded-full border-2 border-[var(--accent)] bg-[var(--canvas-deep)]" aria-hidden="true" />
                 <div>
@@ -47,14 +47,14 @@ export default function Experience() {
                       className="site-link mt-1 inline-flex items-center gap-1.5 text-sm font-bold"
                     >
                       {experience.company}
-                      <ArrowUpRight size={15} aria-hidden="true" />
+                      <ArrowUpRight size={15} weight="bold" aria-hidden="true" />
                     </a>
                   ) : (
                     <p className="mt-1 text-sm font-bold site-muted">{experience.company}</p>
                   )}
                   <ul className="mt-5 space-y-3">
                     {experience.bullets.map((bullet) => (
-                      <li key={bullet} className="text-sm leading-6 site-muted">
+                      <li key={bullet} className="max-w-[65ch] text-sm leading-6 site-muted">
                         {normalizeDashes(bullet)}
                       </li>
                     ))}
@@ -70,14 +70,14 @@ export default function Experience() {
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.55, ease: [0.32, 0.72, 0, 1] }}
         >
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <div>
-              <p className="font-extrabold tracking-[-0.035em] text-xl sm:text-2xl">
+              <p className="text-xl font-extrabold tracking-[-0.035em] sm:text-2xl">
                 Open source at AMD Lemonade SDK
               </p>
-              <p className="mt-4 max-w-md leading-7 site-muted">
+              <p className="mt-4 max-w-[65ch] leading-7 site-muted">
                 Contributions focused on production endpoint coverage, documentation, and surfacing issues that made the test suite more trustworthy.
               </p>
               <a
@@ -87,7 +87,7 @@ export default function Experience() {
                 className="site-link mt-6 inline-flex items-center gap-2 text-sm font-bold"
               >
                 Visit the repository
-                <ArrowUpRight size={16} aria-hidden="true" />
+                <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
               </a>
             </div>
 
@@ -95,7 +95,7 @@ export default function Experience() {
               <div className="grid grid-cols-3 gap-4">
                 {OPEN_SOURCE.stats.map((stat) => (
                   <div key={stat.label}>
-                    <p className="font-mono text-3xl font-semibold tracking-[-0.055em]">{stat.value}</p>
+                    <p className="font-mono text-3xl font-semibold tracking-[-0.055em] tabular-nums">{stat.value}</p>
                     <p className="mt-1 text-sm leading-5 site-muted">{stat.label}</p>
                   </div>
                 ))}
@@ -103,7 +103,7 @@ export default function Experience() {
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 {OPEN_SOURCE.contributions.map((item) => (
                   <div key={item.title} className="flex gap-3 text-sm leading-6 site-muted">
-                    <GitPullRequest className="mt-1 shrink-0 site-accent" size={15} aria-hidden="true" />
+                    <GitPullRequest className="mt-1 shrink-0 site-accent" size={15} weight="bold" aria-hidden="true" />
                     <span>{item.title}</span>
                   </div>
                 ))}

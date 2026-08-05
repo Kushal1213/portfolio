@@ -13,10 +13,10 @@ export default function Achievements() {
     <section className="section-padding border-t site-rule">
       <div className="container-main">
         <div className="max-w-xl">
-          <h2 className="text-4xl font-extrabold leading-[0.98] tracking-[-0.065em] sm:text-5xl">
+          <h2 className="text-4xl font-extrabold leading-[0.98] tracking-[-0.065em] text-balance sm:text-5xl">
             Credentials with range.
           </h2>
-          <p className="mt-5 text-lg leading-8 site-muted">
+          <p className="mt-5 max-w-[65ch] text-lg leading-8 site-muted">
             Cloud, data science, and generative AI learning verified through industry programs.
           </p>
         </div>
@@ -29,7 +29,7 @@ export default function Achievements() {
               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
-              transition={{ delay: index * 0.045, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: index * 0.045, duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             >
               <span className="font-mono text-sm site-quiet tabular-nums">
                 {String(index + 1).padStart(2, '0')}

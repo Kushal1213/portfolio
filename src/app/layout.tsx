@@ -26,11 +26,13 @@ export const metadata: Metadata = {
     siteName: `${SITE.name} | Portfolio`,
     title: `${SITE.name} | Software Engineer, AI/ML, Full Stack`,
     description: 'Software Engineer building production AI/ML systems and contributing to AMD Lemonade SDK.',
+    images: [{ url: '/images/og.png', width: 1920, height: 1080, alt: `${SITE.name} — Software Engineer` }],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${SITE.name} | Software Engineer`,
     description: 'Software Engineer, AI/ML, Full Stack, Open Source Contributor',
+    images: ['/images/og.png'],
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   alternates: { canonical: siteUrl },

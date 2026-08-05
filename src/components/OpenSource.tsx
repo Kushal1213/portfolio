@@ -1,13 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { GitPullRequest, Bug, FileText, AlertCircle, Github, ExternalLink } from 'lucide-react'
+import { GitPullRequest, Bug, FileText, WarningCircle, GithubLogo, ArrowSquareOut } from '@phosphor-icons/react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { OPEN_SOURCE } from '@/data/portfolio'
 
 const typeIcons = {
   pr: GitPullRequest,
-  issue: AlertCircle,
+  issue: WarningCircle,
 }
 
 const statusColors = {
@@ -47,7 +47,7 @@ export default function OpenSource() {
             viewport={{ once: true }}
             transition={{ delay: 0.24 }}
           >
-            <Github className="text-primary mx-auto mb-2" size={22} />
+            <GithubLogo className="text-primary mx-auto mb-2" size={22} />
             <div className="text-lg font-bold text-gradient">AMD</div>
             <div className="text-xs text-text-secondary mt-1">Lemonade SDK</div>
           </motion.div>
@@ -101,9 +101,9 @@ export default function OpenSource() {
             className="inline-flex items-center gap-2 px-7 py-3.5 glass rounded-xl font-semibold hover:bg-surface-hover interactive"
             whileHover={{ scale: 1.03, y: -2 }}
           >
-            <Github size={18} />
+            <GithubLogo size={18} />
             View lemonade-sdk/lemonade
-            <ExternalLink size={16} />
+            <ArrowSquareOut size={16} />
           </motion.a>
         </motion.div>
       </div>

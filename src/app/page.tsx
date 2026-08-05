@@ -12,9 +12,9 @@ import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
-    <div className="site-shell">
+    <div className="site-shell overflow-x-hidden w-full max-w-full">
       <Navbar />
-      <main>
+      <main id="main-content" className="overflow-x-hidden w-full max-w-full">
         <Hero />
         <Projects />
         <About />

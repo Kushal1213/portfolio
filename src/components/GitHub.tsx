@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Github, Star, GitFork, ExternalLink, Code } from 'lucide-react'
+import { GithubLogo, Star, GitFork, ArrowSquareOut, Code } from '@phosphor-icons/react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { GITHUB, OPEN_SOURCE } from '@/data/portfolio'
 
@@ -69,12 +69,12 @@ export default function GitHubSection() {
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <Github size={18} className="text-primary" />
+                    <GithubLogo size={18} className="text-primary" />
                     <span className="font-semibold text-sm group-hover:text-primary transition-colors">
                       {repo.name}
                     </span>
                   </div>
-                  <ExternalLink size={14} className="text-text-tertiary group-hover:text-primary" />
+                  <ArrowSquareOut size={14} className="text-text-tertiary group-hover:text-primary" />
                 </div>
                 <p className="text-sm text-text-secondary leading-relaxed mb-3">{repo.description}</p>
                 <span className="font-mono text-xs text-primary">{repo.language}</span>
@@ -126,7 +126,7 @@ export default function GitHubSection() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-xl font-semibold text-sm interactive"
               whileHover={{ scale: 1.03 }}
             >
-              <Github size={16} />
+              <GithubLogo size={16} />
               View GitHub Profile
             </motion.a>
           </motion.div>

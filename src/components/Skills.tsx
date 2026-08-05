@@ -26,7 +26,7 @@ export default function Skills() {
               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: index * 0.04, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: index * 0.04, duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             >
               <h3 className="font-mono text-xs font-medium uppercase tracking-[0.12em] site-quiet">
                 {category.label}
@@ -36,7 +36,7 @@ export default function Skills() {
                   <span
                     key={skill.name}
                     title={skill.level}
-                    className="rounded-md border px-2.5 py-1.5 text-sm font-medium site-rule site-muted transition-colors hover:border-[var(--accent)] hover:text-[var(--ink)]"
+                    className="rounded-md border px-2.5 py-1.5 text-sm font-medium site-rule site-muted transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-[var(--accent)] hover:text-[var(--ink)] active:scale-[0.98]"
                   >
                     {skill.name}
                   </span>

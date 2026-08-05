@@ -1,12 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Award, Cloud, GraduationCap, ExternalLink } from 'lucide-react'
+import { Medal, Cloud, GraduationCap, ArrowSquareOut } from '@phosphor-icons/react'
 
 export default function Certifications() {
   const certifications = [
     {
-      icon: Award,
+      icon: Medal,
       issuer: 'Oracle · OCI',
       title: 'OCI 2025 Certified Data Science Professional',
       year: '2025',
@@ -98,7 +98,7 @@ export default function Certifications() {
               
               <div className="flex items-center justify-between">
                 <span className="text-xs text-text-secondary font-mono">{cert.year}</span>
-                <ExternalLink className="text-text-secondary group-hover:text-primary transition-colors" size={18} />
+                <ArrowSquareOut className="text-text-secondary group-hover:text-primary transition-colors" size={18} />
               </div>
             </motion.div>
           ))}

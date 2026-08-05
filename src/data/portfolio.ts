@@ -84,8 +84,9 @@ export const PROJECTS = [
     tags: ['Python', 'GNN', 'XGBoost', 'SHAP', 'Pinecone', 'Pandas'],
     github: 'https://github.com/Kushal1213/fraud-detection',
     demo: 'https://frontend-tawny-gamma-75.vercel.app/',
+    video: '/videos/motif.mp4',
+    poster: '/images/data-topography.webp',
     gradient: 'from-indigo-500/20 via-violet-500/10 to-cyan-500/20',
-    icon: '🔗',
   },
   {
     id: 'xeno-analytics',
@@ -140,8 +141,9 @@ export const PROJECTS = [
     tags: ['Python', 'Node.js', 'MongoDB', 'Random Forest', 'K-Means'],
     github: 'https://github.com/Kushal1213/shopify',
     demo: 'https://shopify-main-eight.vercel.app/',
+    video: '/videos/shopify.mp4',
+    poster: '/images/systems-sculpture.webp',
     gradient: 'from-emerald-500/20 via-teal-500/10 to-cyan-500/20',
-    icon: '📊',
   },
   {
     id: 'querycraft',
@@ -196,8 +198,9 @@ export const PROJECTS = [
     tags: ['Python', 'Google Cloud', 'LLM', 'RAG', 'SQL'],
     github: 'https://github.com/Kushal1213/querycraft',
     demo: 'https://querycraft.tech/',
+    video: null,
+    poster: null,
     gradient: 'from-violet-500/20 via-purple-500/10 to-fuchsia-500/20',
-    icon: '🤖',
   },
   {
     id: 'sleep-oracle',
@@ -252,8 +255,9 @@ export const PROJECTS = [
     tags: ['Python', 'scikit-learn', 'Flask', 'Pandas', 'Random Forest'],
     github: 'https://github.com/Kushal1213/Sleep-Oracle',
     demo: 'https://sleep-oracle-frontend-4119.onrender.com/',
+    video: '/videos/sleep.mp4',
+    poster: '/images/data-topography.webp',
     gradient: 'from-blue-500/20 via-indigo-500/10 to-violet-500/20',
-    icon: '😴',
   },
 ] as const
 

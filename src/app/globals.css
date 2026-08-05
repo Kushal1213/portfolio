@@ -80,6 +80,24 @@
 }
 
 @layer utilities {
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100%;
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-control);
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: top 0.2s ease;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+
   .site-shell {
     position: relative;
     min-height: 100dvh;
@@ -116,7 +134,7 @@
   }
 
   .section-padding {
-    @apply py-16 md:py-24 lg:py-32 xl:py-36;
+    @apply py-20 md:py-28 lg:py-36 xl:py-40;
   }
 
   .site-panel {
