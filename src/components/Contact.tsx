@@ -49,22 +49,43 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="site-kicker">Direct contact</p>
-            <a className="site-link mt-4 inline-flex break-all text-xl font-extrabold tracking-[-0.04em] sm:text-2xl" href={`mailto:${SITE.email}`}>
+            <a
+              className="site-link inline-flex break-all text-xl font-extrabold tracking-[-0.04em] sm:text-2xl"
+              href={`mailto:${SITE.email}`}
+            >
               {SITE.email}
             </a>
             <p className="mt-4 max-w-sm leading-7 site-muted">{SITE.availability.replace('·', '-')}</p>
 
-            <div className="mt-9 space-y-3">
-              <a className="site-link flex items-center justify-between border-t py-3 text-sm font-bold site-rule" href={SITE.urls.github} target="_blank" rel="noreferrer">
-                <span className="inline-flex items-center gap-2"><Github size={17} aria-hidden="true" /> GitHub</span>
+            <div className="mt-9 space-y-0">
+              <a
+                className="site-link flex items-center justify-between border-t py-3 text-sm font-bold site-rule"
+                href={SITE.urls.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Github size={17} aria-hidden="true" /> GitHub
+                </span>
                 <ArrowUpRight size={16} aria-hidden="true" />
               </a>
-              <a className="site-link flex items-center justify-between border-t py-3 text-sm font-bold site-rule" href={SITE.urls.linkedin} target="_blank" rel="noreferrer">
-                <span className="inline-flex items-center gap-2"><Linkedin size={17} aria-hidden="true" /> LinkedIn</span>
+              <a
+                className="site-link flex items-center justify-between border-t py-3 text-sm font-bold site-rule"
+                href={SITE.urls.linkedin}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Linkedin size={17} aria-hidden="true" /> LinkedIn
+                </span>
                 <ArrowUpRight size={16} aria-hidden="true" />
               </a>
-              <a className="site-link flex items-center justify-between border-y py-3 text-sm font-bold site-rule" href={SITE.urls.leetcode} target="_blank" rel="noreferrer">
+              <a
+                className="site-link flex items-center justify-between border-y py-3 text-sm font-bold site-rule"
+                href={SITE.urls.leetcode}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span>LeetCode</span>
                 <ArrowUpRight size={16} aria-hidden="true" />
               </a>
@@ -74,7 +95,7 @@ export default function Contact() {
           <motion.form
             noValidate
             onSubmit={handleSubmit}
-            className="site-panel rounded-2xl p-6 sm:p-9"
+            className="site-panel p-6 sm:p-9"
             initial={reduceMotion ? false : { opacity: 0, x: 16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -88,7 +109,7 @@ export default function Contact() {
                   name="name"
                   value={form.name}
                   onChange={(event) => setForm({ ...form, name: event.target.value })}
-                  className="rounded-xl border bg-transparent px-4 py-3.5 font-medium outline-none site-rule placeholder:text-[var(--quiet)] focus:border-[var(--accent)]"
+                  className="input-focus-ring rounded-[var(--radius-panel)] border bg-transparent px-4 py-3.5 font-medium outline-none site-rule placeholder:text-[var(--quiet)]"
                   placeholder="Your name"
                   autoComplete="name"
                 />
@@ -101,7 +122,7 @@ export default function Contact() {
                   type="email"
                   value={form.email}
                   onChange={(event) => setForm({ ...form, email: event.target.value })}
-                  className="rounded-xl border bg-transparent px-4 py-3.5 font-medium outline-none site-rule placeholder:text-[var(--quiet)] focus:border-[var(--accent)]"
+                  className="input-focus-ring rounded-[var(--radius-panel)] border bg-transparent px-4 py-3.5 font-medium outline-none site-rule placeholder:text-[var(--quiet)]"
                   placeholder="name@company.com"
                   autoComplete="email"
                 />
@@ -114,7 +135,7 @@ export default function Contact() {
                 name="message"
                 value={form.message}
                 onChange={(event) => setForm({ ...form, message: event.target.value })}
-                className="min-h-36 resize-y rounded-xl border bg-transparent px-4 py-3.5 font-medium outline-none site-rule placeholder:text-[var(--quiet)] focus:border-[var(--accent)]"
+                className="input-focus-ring min-h-36 resize-y rounded-[var(--radius-panel)] border bg-transparent px-4 py-3.5 font-medium outline-none site-rule placeholder:text-[var(--quiet)]"
                 placeholder="A short note is perfect."
               />
             </label>

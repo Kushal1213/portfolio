@@ -30,13 +30,13 @@ export default function About() {
             I am a software engineer focused on the seam between reliable backend systems and practical machine learning.
           </p>
 
-          <div className="site-panel mt-9 flex items-center gap-5 rounded-2xl p-5 sm:max-w-md">
+          <div className="mt-10 flex items-center gap-5">
             <Image
               src={GITHUB.avatarUrl}
               alt="Kushal Choudhary"
-              width={92}
-              height={92}
-              className="h-[92px] w-[92px] rounded-xl object-cover"
+              width={88}
+              height={88}
+              className="h-[88px] w-[88px] rounded-[var(--radius-panel)] object-cover"
             />
             <div>
               <p className="font-extrabold tracking-[-0.03em]">Kushal Choudhary</p>
@@ -45,7 +45,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             <a className="site-link inline-flex items-center gap-2 text-sm font-bold" href={SITE.urls.github} target="_blank" rel="noreferrer">
               <Github size={17} aria-hidden="true" />
               GitHub
@@ -63,7 +63,7 @@ export default function About() {
           {principles.map(([title, description], index) => (
             <motion.article
               key={title}
-              className="border-t py-7 first:pt-0 site-rule"
+              className="border-t py-7 first:border-t-0 first:pt-0 site-rule"
               initial={reduceMotion ? false : { opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}

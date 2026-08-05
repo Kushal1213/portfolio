@@ -19,7 +19,7 @@ export const HERO_STATS = [
   { value: '4', label: 'Production Projects', suffix: '+' },
   { value: '36', label: 'GitHub Repositories', suffix: '' },
   { value: '20', label: 'Technologies', suffix: '+' },
-  { value: '282', label: 'DSA Problems Solved', suffix: '' },
+  { value: '400+', label: 'Problems Across Platforms', suffix: '' },
   { value: '4', label: 'Years Learning', suffix: '+' },
 ] as const
 
@@ -83,7 +83,7 @@ export const PROJECTS = [
     },
     tags: ['Python', 'GNN', 'XGBoost', 'SHAP', 'Pinecone', 'Pandas'],
     github: 'https://github.com/Kushal1213/fraud-detection',
-    demo: null,
+    demo: 'https://frontend-tawny-gamma-75.vercel.app/',
     gradient: 'from-indigo-500/20 via-violet-500/10 to-cyan-500/20',
     icon: '🔗',
   },
@@ -139,7 +139,7 @@ export const PROJECTS = [
     },
     tags: ['Python', 'Node.js', 'MongoDB', 'Random Forest', 'K-Means'],
     github: 'https://github.com/Kushal1213/shopify',
-    demo: null,
+    demo: 'https://shopify-main-eight.vercel.app/',
     gradient: 'from-emerald-500/20 via-teal-500/10 to-cyan-500/20',
     icon: '📊',
   },
@@ -195,7 +195,7 @@ export const PROJECTS = [
     },
     tags: ['Python', 'Google Cloud', 'LLM', 'RAG', 'SQL'],
     github: 'https://github.com/Kushal1213/querycraft',
-    demo: null,
+    demo: 'https://querycraft.tech/',
     gradient: 'from-violet-500/20 via-purple-500/10 to-fuchsia-500/20',
     icon: '🤖',
   },
@@ -251,7 +251,7 @@ export const PROJECTS = [
     },
     tags: ['Python', 'scikit-learn', 'Flask', 'Pandas', 'Random Forest'],
     github: 'https://github.com/Kushal1213/Sleep-Oracle',
-    demo: null,
+    demo: 'https://sleep-oracle-frontend-4119.onrender.com/',
     gradient: 'from-blue-500/20 via-indigo-500/10 to-violet-500/20',
     icon: '😴',
   },
@@ -396,11 +396,6 @@ export const EDUCATION = {
 export const LEETCODE = {
   username: 'kushal_choudhary',
   profileUrl: 'https://leetcode.com/u/kushal_choudhary/',
-  total: 282,
-  easy: 166,
-  medium: 108,
-  hard: 8,
-  ranking: 524170,
 } as const
 
 export const GITHUB = {
@@ -535,5 +530,6 @@ export const NAV_LINKS = [
   { name: 'Experience', href: '#experience' },
   { name: 'Skills', href: '#skills' },
   { name: 'Education', href: '#education' },
+  { name: 'DSA', href: '#dsa' },
   { name: 'Contact', href: '#contact' },
 ] as const

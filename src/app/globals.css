@@ -7,34 +7,38 @@
     color-scheme: dark light;
     --canvas: #11130f;
     --canvas-deep: #0c0e0a;
-    --surface: rgba(29, 33, 25, 0.9);
-    --surface-solid: #1d2119;
-    --surface-hover: #292e24;
+    --surface: rgba(23, 26, 20, 0.92);
+    --surface-solid: #171a14;
+    --surface-hover: #1d2119;
     --ink: #f0f2e9;
     --muted: #b4b9ab;
     --quiet: #7f8879;
-    --line: #39412f;
-    --line-strong: #4b5540;
+    --line: #343b2e;
+    --line-strong: #48513f;
     --accent: #b6d85c;
-    --accent-ink: #162009;
-    --shadow: rgba(3, 5, 2, 0.32);
+    --accent-ink: #11130f;
+    --shadow: rgba(8, 10, 6, 0.45);
+    --glow: rgba(182, 216, 92, 0.12);
+    --radius-panel: 1rem;
+    --radius-control: 0.5rem;
   }
 
   @media (prefers-color-scheme: light) {
     :root {
-      --canvas: #f1f3eb;
-      --canvas-deep: #e4e8de;
-      --surface: rgba(255, 255, 251, 0.86);
-      --surface-solid: #fbfcf6;
-      --surface-hover: #e8ede0;
-      --ink: #182017;
-      --muted: #465044;
-      --quiet: #67715f;
-      --line: #c7cfc0;
-      --line-strong: #aeb8a3;
-      --accent: #647b25;
-      --accent-ink: #f8faef;
-      --shadow: rgba(38, 49, 32, 0.11);
+      --canvas: #f4f5f0;
+      --canvas-deep: #e8ebe2;
+      --surface: rgba(255, 255, 255, 0.88);
+      --surface-solid: #ffffff;
+      --surface-hover: #eef0ea;
+      --ink: #141610;
+      --muted: #5c6354;
+      --quiet: #7a8270;
+      --line: #d5dacb;
+      --line-strong: #b8c0aa;
+      --accent: #6f9a1f;
+      --accent-ink: #ffffff;
+      --shadow: rgba(20, 24, 12, 0.08);
+      --glow: rgba(111, 154, 31, 0.12);
     }
   }
 
@@ -51,6 +55,9 @@
     @apply font-sans overflow-x-hidden antialiased;
     background: var(--canvas);
     color: var(--ink);
+    font-feature-settings: 'ss01', 'ss02';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   a,
@@ -74,28 +81,61 @@
 
 @layer utilities {
   .site-shell {
+    position: relative;
     min-height: 100dvh;
-    background: var(--canvas);
+    background:
+      radial-gradient(ellipse 80% 50% at 85% 8%, rgba(182, 216, 92, 0.07), transparent 55%),
+      radial-gradient(ellipse 60% 40% at 10% 70%, rgba(182, 216, 92, 0.03), transparent 50%),
+      var(--canvas);
     color: var(--ink);
   }
 
+  @media (prefers-color-scheme: light) {
+    .site-shell {
+      background:
+        radial-gradient(ellipse 80% 50% at 85% 8%, rgba(111, 154, 31, 0.06), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 10% 70%, rgba(111, 154, 31, 0.03), transparent 50%),
+        var(--canvas);
+    }
+  }
+
+  .site-shell::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 60;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
   .container-main {
-    @apply mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-10;
+    @apply mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-10 xl:px-12;
   }
 
   .section-padding {
-    @apply py-20 md:py-28 lg:py-32;
+    @apply py-16 md:py-24 lg:py-32 xl:py-36;
   }
 
   .site-panel {
     border: 1px solid var(--line);
     background: var(--surface);
-    box-shadow: 0 22px 52px var(--shadow);
+    border-radius: var(--radius-panel);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 32px var(--shadow);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .site-panel:hover {
+    border-color: var(--line-strong);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 40px var(--shadow);
   }
 
   .site-panel-subtle {
     border: 1px solid var(--line);
     background: color-mix(in srgb, var(--surface-solid) 72%, transparent);
+    border-radius: var(--radius-panel);
   }
 
   .site-rule {
@@ -125,8 +165,11 @@
 
   .site-button-primary,
   .site-button-secondary {
-    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap px-5 py-3 text-sm font-bold transition duration-300 ease-out active:translate-y-px active:scale-[0.98];
-    border-radius: 0.75rem;
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap px-6 py-3 text-sm font-semibold transition-all duration-200 ease-out active:translate-y-px active:scale-[0.98];
+    border-radius: var(--radius-control);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: -0.01em;
   }
 
   .site-button-primary {
@@ -136,29 +179,57 @@
   }
 
   .site-button-primary:hover {
-    filter: brightness(1.08);
-    transform: translateY(-2px);
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px var(--glow);
   }
 
   .site-button-secondary {
-    border: 1px solid var(--line-strong);
-    background: color-mix(in srgb, var(--surface-solid) 75%, transparent);
+    border: 1px solid var(--line);
+    background: transparent;
     color: var(--ink);
   }
 
   .site-button-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
+    border-color: var(--line-strong);
+    background: var(--surface-hover);
   }
 
   .site-kicker {
     color: var(--accent);
-    font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
-    font-size: 0.7rem;
+    font-family: var(--font-ibm-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+  }
+
+  .hover-underline {
+    position: relative;
+  }
+
+  .hover-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .hover-underline:hover::after {
+    width: 100%;
+  }
+
+  .input-focus-ring {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .input-focus-ring:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--glow);
   }
 }
 
@@ -184,4 +255,8 @@
   background: var(--line-strong);
   border: 2px solid var(--canvas);
   border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }

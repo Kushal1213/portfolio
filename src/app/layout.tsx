@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   alternates: { canonical: siteUrl },
 }
 
-export const viewport: Viewport = { themeColor: '#11130f', width: 'device-width', initialScale: 1 }
+export const viewport: Viewport = { themeColor: '#11130f', width: 'device-width', initialScale: 1, colorScheme: 'dark light' }
 
 const jsonLd = {
   '@context': 'https://schema.org',

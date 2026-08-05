@@ -33,6 +33,10 @@ const config: Config = {
         sans: ['var(--font-manrope)', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
         display: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
       },
+      borderRadius: {
+        panel: '1rem',
+        control: '0.5rem',
+      },
     },
   },
   plugins: [],
