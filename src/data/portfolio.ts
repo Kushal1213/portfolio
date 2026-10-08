@@ -16,7 +16,7 @@ export const SITE = {
 } as const
 
 export const HERO_STATS = [
-  { value: '4', label: 'Production Projects', suffix: '+' },
+  { value: '5', label: 'Projects Built', suffix: '+' },
   { value: '36', label: 'GitHub Repositories', suffix: '' },
   { value: '20', label: 'Technologies', suffix: '+' },
   { value: '400+', label: 'Problems Across Platforms', suffix: '' },
@@ -87,6 +87,63 @@ export const PROJECTS = [
     video: '/videos/motif.mp4',
     poster: '/images/data-topography.webp',
     gradient: 'from-indigo-500/20 via-violet-500/10 to-cyan-500/20',
+  },
+  {
+    id: 'veyra',
+    featured: false,
+    title: 'Veyra — Voice Intelligence Platform',
+    subtitle: 'Knowledge-Grounded Voice Agents & Live Insights',
+    summary:
+      'Voice intelligence workspace combining live transcription, spoken AI responses, RAG answers with source citations, and real-time conversation signals. Four localized agents support customer conversations across India, the Philippines, and Indonesia.',
+    problem:
+      'Customer-facing voice agents need reliable product knowledge and operators need visibility into customer intent, frustration, and escalation requests during a conversation.',
+    solution:
+      'Connected a React voice workspace to an Express and Socket.IO gateway with FastAPI services for document ingestion, FAISS retrieval, Gemini responses, and live conversation analysis.',
+    architecture: {
+      frontend: ['React', 'Vite', 'Tailwind CSS', 'Browser Web Speech APIs'],
+      backend: ['Express', 'Socket.IO', 'FastAPI'],
+      database: ['FAISS Vector Index', 'Document Metadata'],
+      deployment: ['Local Multi-Service Stack', 'Service Health Monitoring'],
+      ai: ['Google Gemini', 'RAG', 'Conversation Signal Detection'],
+      infrastructure: ['Document Ingestion', 'Live Transcript Streaming', 'Optional Vapi Integration'],
+    },
+    features: [
+      'Live Transcription & Spoken Responses',
+      'Knowledge-Grounded Answers with Source Citations',
+      'Customer Intent & Escalation Signals',
+      'Four Localized Market Agents',
+      'PDF & Text Knowledge Ingestion',
+      'Live Insights & Operational Analytics',
+    ],
+    metrics: [
+      { value: '4', label: 'Localized Agents' },
+      { value: '3', label: 'Markets Supported' },
+      { value: 'RAG', label: 'Cited Answers' },
+    ],
+    challenges: [
+      'Grounding voice responses in relevant market and product knowledge',
+      'Coordinating transcription, retrieval, and live insights across services',
+      'Keeping browser speech available when optional voice providers are unavailable',
+    ],
+    results: [
+      'Unified voice conversations, source citations, and live insights in one workspace',
+      'Localized agents for India, the Philippines, and Indonesia',
+      'Document ingestion and service health views for operators',
+    ],
+    caseStudy: {
+      research: 'Explored retrieval grounding and localized voice workflows for customer conversations.',
+      approach: 'Separated voice orchestration, knowledge ingestion, retrieval, and conversation signals behind a shared gateway.',
+      tradeoffs: 'A multi-service design isolates responsibilities but requires coordinated startup and service health checks.',
+      optimizations: 'Used a FAISS index for knowledge retrieval and Socket.IO for live transcript and insight delivery.',
+      learnings: 'Source visibility and operator context are essential parts of a useful voice agent experience.',
+      future: 'External handoff connectors and broader provider-backed grounding evaluation.',
+    },
+    tags: ['React', 'Node.js', 'FastAPI', 'Gemini', 'RAG', 'Socket.IO', 'FAISS'],
+    github: 'https://github.com/Kushal1213/darwinxvapi',
+    demo: null,
+    video: null,
+    poster: null,
+    gradient: 'from-emerald-500/20 via-teal-500/10 to-cyan-500/20',
   },
   {
     id: 'xeno-analytics',

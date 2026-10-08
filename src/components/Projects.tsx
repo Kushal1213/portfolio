@@ -171,9 +171,19 @@ export default function Projects() {
         </motion.article>
 
         <div className="mt-4 grid gap-0 border-b site-rule lg:grid-cols-2 lg:gap-x-16">
-          <ProjectCard project={otherProjects[0]} />
-          <ProjectCard project={otherProjects[1]} className="lg:pt-16" />
-          <ProjectCard project={otherProjects[2]} className="lg:col-span-2 lg:mx-[10%] lg:border-t-0 lg:pt-10" />
+          {otherProjects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              className={
+                index === otherProjects.length - 1 && otherProjects.length % 2 === 1
+                  ? 'lg:col-span-2 lg:mx-[10%] lg:border-t-0 lg:pt-10'
+                  : index % 2 === 1
+                    ? 'lg:pt-16'
+                    : ''
+              }
+            />
+          ))}
         </div>
       </div>
     </section>
