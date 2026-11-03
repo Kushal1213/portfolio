@@ -17,7 +17,7 @@ Help a recruiter understand role fit, technical depth, evidence, and the next ac
 ## Next highest-impact work
 
 1. Add real product screenshots for Cuepoint, Veyra, and KaamKaaj so each priority project has immediate visual proof.
-2. Repair and verify the public deployment and connect a stable custom domain.
+2. Make the Vercel production deployment public, then set `NEXT_PUBLIC_SITE_URL` to its stable domain.
 3. Check every repository and live-demo link monthly; remove or clearly label unavailable demos.
 4. Add privacy-respecting analytics for résumé downloads, project opens, email clicks, and section completion.
 5. Add short architecture diagrams to Cuepoint, Veyra, and the fraud system using the same visual language.
@@ -36,3 +36,7 @@ Help a recruiter understand role fit, technical depth, evidence, and the next ac
 - No broken production links.
 - Mobile Lighthouse performance and accessibility remain above 90.
 - Portfolio copy and résumé remain factually synchronized.
+
+## Release blocker
+
+GitHub reports successful Vercel production deployments, but the generated deployment URL redirects anonymous visitors to Vercel login. The previous `kushalchoudhary.vercel.app` alias returns 404 and `kushalchoudhary.dev` has no DNS record. Reconnect the Vercel account, disable deployment protection for production, and attach a stable domain before advertising the portfolio URL.
