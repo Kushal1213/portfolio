@@ -3,22 +3,34 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { SKILL_CATEGORIES } from '@/data/portfolio'
 
+const marqueeSkills = SKILL_CATEGORIES.flatMap((category) => category.skills.map((skill) => skill.name))
+
 export default function Skills() {
   const reduceMotion = useReducedMotion()
 
   return (
     <section id="skills" className="section-padding border-t site-rule">
       <div className="container-main">
-        <div className="max-w-xl">
-          <h2 className="text-4xl font-extrabold leading-[0.98] tracking-[-0.065em] sm:text-5xl lg:text-6xl">
-            Tools, but in context.
+        <div className="grid items-end gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <h2 className="max-w-4xl text-[clamp(3rem,6vw,6.5rem)] font-extrabold leading-[0.9] tracking-[-0.075em] text-balance">
+            Capability is the system, not the tool list.
           </h2>
           <p className="mt-5 text-lg leading-8 site-muted">
             A practical stack shaped by projects, deployments, open source, and deliberate study.
           </p>
         </div>
 
-        <div className="mt-14 space-y-10">
+        <div className="relative -mx-5 mt-14 overflow-hidden border-y py-5 site-rule sm:-mx-8 lg:-mx-10 xl:-mx-12" aria-hidden="true">
+          <div className="skill-marquee flex w-max items-center gap-8 whitespace-nowrap px-5 sm:px-8">
+            {[...marqueeSkills, ...marqueeSkills].map((skill, index) => (
+              <span key={`${skill}-${index}`} className="inline-flex items-center gap-8 text-xl font-semibold tracking-[-0.03em] site-muted">
+                {skill}<span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-16 space-y-10">
           {SKILL_CATEGORIES.map((category, index) => (
             <motion.div
               key={category.label}

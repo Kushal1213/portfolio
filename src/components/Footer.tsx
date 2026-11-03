@@ -8,10 +8,10 @@ export default function Footer() {
       <div className="container-main flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
         <div>
           <p className="font-semibold">
-            {SITE.name} <span className="site-muted">- Software Engineer</span>
+            {SITE.name} <span className="site-muted">- Software &amp; Data Engineer</span>
           </p>
           <p className="mt-2 text-sm site-quiet">
-            © {year} {SITE.name}. Built with Next.js, Motion, and Tailwind CSS.
+            © {year} {SITE.name}. Built with Next.js, GSAP, Motion, and Tailwind CSS.
           </p>
         </div>
         <div className="flex flex-wrap gap-5 text-sm">

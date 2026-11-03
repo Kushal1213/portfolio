@@ -30,8 +30,8 @@ const config: Config = {
       },
       fontFamily: {
         mono: ['var(--font-ibm-plex-mono)', 'ui-monospace', 'monospace'],
-        sans: ['var(--font-manrope)', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
-        display: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-outfit)', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        display: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         panel: '1rem',

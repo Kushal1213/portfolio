@@ -21,18 +21,18 @@ export default function Achievements() {
           </p>
         </div>
 
-        <ol className="mt-12 max-w-4xl">
+        <ul className="mt-12 max-w-4xl">
           {certifications.map((credential, index) => (
             <motion.li
               key={credential.title}
-              className="grid grid-cols-[3rem_1fr] gap-4 border-t py-5 site-rule sm:grid-cols-[4.5rem_1fr_auto] sm:gap-8"
+              className="grid grid-cols-[4rem_1fr] gap-5 border-t py-5 site-rule sm:grid-cols-[5rem_1fr] sm:gap-8"
               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ delay: index * 0.045, duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             >
               <span className="font-mono text-sm site-quiet tabular-nums">
-                {String(index + 1).padStart(2, '0')}
+                {credential.year}
               </span>
               <div>
                 <h3 className="font-extrabold leading-6 tracking-[-0.025em]">
@@ -40,10 +40,9 @@ export default function Achievements() {
                 </h3>
                 <p className="mt-1 text-sm leading-6 site-muted">{normalizeDashes(credential.issuer)}</p>
               </div>
-              <p className="hidden font-mono text-sm site-accent sm:block">{credential.year}</p>
             </motion.li>
           ))}
-        </ol>
+        </ul>
       </div>
     </section>
   )

@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from 'next'
-import { IBM_Plex_Mono, Manrope } from 'next/font/google'
+import { IBM_Plex_Mono, Outfit } from 'next/font/google'
 import './globals.css'
 import { SITE } from '@/data/portfolio'
 
-const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope', display: 'swap' })
+const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 'swap' })
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ['latin'],
   variable: '--font-ibm-plex-mono',
@@ -54,7 +54,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${ibmPlexMono.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${ibmPlexMono.variable}`}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>

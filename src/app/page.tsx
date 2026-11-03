@@ -17,9 +17,9 @@ export default function Home() {
       <main id="main-content" className="overflow-x-hidden w-full max-w-full">
         <Hero />
         <Projects />
-        <About />
         <Experience />
         <Skills />
+        <About />
         <Education />
         <DSA />
         <Achievements />

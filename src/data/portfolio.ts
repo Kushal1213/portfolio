@@ -32,15 +32,6 @@ export const ROLES = [
 
 export const LATEST_WORK = [
   {
-    title: 'KaamKaaj',
-    eyebrow: 'Recruitment marketplace',
-    summary:
-      'Candidate-first job discovery with bilingual English and Hindi flows, role and locality search, saved jobs, quick apply, and a browser-persisted application tracker.',
-    tags: ['React 19', 'TypeScript', 'Vite', 'Local-first', 'Accessibility'],
-    github: 'https://github.com/Kushal1213/kaamkaaj',
-    demo: 'https://kushal1213.github.io/kaamkaaj/',
-  },
-  {
     title: 'Cuepoint',
     eyebrow: 'Windows AI desktop assistant',
     summary:
@@ -48,6 +39,24 @@ export const LATEST_WORK = [
     tags: ['Tauri 2', 'FastAPI', 'Python', 'TypeScript', 'Multimodal AI'],
     github: 'https://github.com/Kushal1213/cuepoint',
     demo: 'https://kushal1213.github.io/cuepoint/',
+  },
+  {
+    title: 'Veyra',
+    eyebrow: 'Voice intelligence platform',
+    summary:
+      'Knowledge-grounded voice agents with live transcription, spoken responses, source citations, conversation signals, and four localized agents across three markets.',
+    tags: ['React', 'Socket.IO', 'FastAPI', 'Gemini', 'FAISS'],
+    github: 'https://github.com/Kushal1213/darwinxvapi',
+    demo: null,
+  },
+  {
+    title: 'KaamKaaj',
+    eyebrow: 'Recruitment marketplace',
+    summary:
+      'Candidate-first job discovery with bilingual English and Hindi flows, role and locality search, saved jobs, quick apply, and a browser-persisted application tracker.',
+    tags: ['React 19', 'TypeScript', 'Vite', 'Local-first', 'Accessibility'],
+    github: 'https://github.com/Kushal1213/kaamkaaj',
+    demo: 'https://kushal1213.github.io/kaamkaaj/',
   },
   {
     title: 'GPT From Scratch',
@@ -65,15 +74,6 @@ export const LATEST_WORK = [
       'A LangGraph retrieval pipeline with Pinecone, confidence scoring, source-page context, a relevance gate that refuses unsupported questions, FastAPI, and an optional Streamlit UI.',
     tags: ['LangGraph', 'Pinecone', 'OpenAI', 'FastAPI', 'Streamlit'],
     github: 'https://github.com/Kushal1213/rag-task',
-    demo: null,
-  },
-  {
-    title: 'Cotoff',
-    eyebrow: 'Coding-agent infrastructure',
-    summary:
-      'A Node.js toolkit that routes bulk reads and predictable code generation to lower-cost worker modes while keeping architecture, debugging, and final edits with the primary agent.',
-    tags: ['Node.js', 'Agent tooling', 'CLI', 'Hooks', 'Testing'],
-    github: 'https://github.com/Kushal1213/cotoff',
     demo: null,
   },
 ] as const
@@ -654,11 +654,9 @@ export const ACHIEVEMENTS = [
 ] as const
 
 export const NAV_LINKS = [
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
+  { name: 'Work', href: '#projects' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Education', href: '#education' },
-  { name: 'DSA', href: '#dsa' },
+  { name: 'Capabilities', href: '#skills' },
+  { name: 'About', href: '#about' },
   { name: 'Contact', href: '#contact' },
 ] as const

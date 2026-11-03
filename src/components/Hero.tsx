@@ -12,7 +12,7 @@ export default function Hero() {
   return (
     <section id="hero" className="relative flex min-h-[100dvh] items-stretch overflow-clip pt-[5.5rem]">
       <div className="container-main grid w-full flex-1 items-center gap-8 py-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-0 lg:py-12">
-        <div className="relative z-10 max-w-3xl lg:pr-10 xl:pr-16">
+        <div className="relative z-10 max-w-4xl lg:pr-8 xl:pr-14">
           <motion.p
             className="mb-4 text-[clamp(1.75rem,3.5vw,2.75rem)] font-extrabold leading-none tracking-[-0.06em]"
             initial={reveal}
@@ -31,12 +31,19 @@ export default function Hero() {
             Software, data, and AI systems
           </motion.p>
           <motion.h1
-            className="max-w-5xl text-[clamp(2.5rem,5.5vw,5.25rem)] font-extrabold leading-[1.05] tracking-[-0.07em] text-balance"
+            className="max-w-6xl text-[clamp(3rem,5.5vw,6.25rem)] font-extrabold leading-[0.96] tracking-[-0.075em] text-balance"
+            aria-label="AI products built like real systems."
             initial={reveal}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.55, ease: [0.32, 0.72, 0, 1] }}
           >
-            Products that think. Systems that hold up.
+            AI products{' '}
+            <span
+              className="mx-[0.08em] inline-block h-[0.62em] w-[1.25em] rounded-[0.35em] bg-cover bg-center align-[0.02em] grayscale transition-all duration-700 hover:w-[1.7em] hover:grayscale-0"
+              style={{ backgroundImage: "url('/images/data-topography.webp')" }}
+              aria-hidden="true"
+            />{' '}
+            built like real systems.
           </motion.h1>
           <motion.p
             className="mt-5 max-w-[65ch] text-base leading-7 site-muted sm:text-lg sm:leading-8"
