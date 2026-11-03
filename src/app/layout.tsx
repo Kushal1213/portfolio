@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: `${SITE.name} | Portfolio`,
     title: `${SITE.name} | Software & Data Engineer`,
     description: 'Building AI products, data platforms, desktop tools, and open-source systems.',
-    images: [{ url: '/images/og.png', width: 1920, height: 1080, alt: `${SITE.name} — Software Engineer` }],
+    images: [{ url: '/images/og.png', width: 1200, height: 630, alt: `${SITE.name} - Software and Data Engineer` }],
   },
   twitter: {
     card: 'summary_large_image',

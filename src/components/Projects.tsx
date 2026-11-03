@@ -120,7 +120,7 @@ export default function Projects() {
               <article
                 key={project.id}
                 data-work-card
-                className="sticky overflow-hidden rounded-[var(--radius-panel)] border site-rule lg:grid lg:min-h-[610px] lg:grid-cols-[1.2fr_0.8fr]"
+                className="relative overflow-hidden rounded-[var(--radius-panel)] border site-rule lg:sticky lg:grid lg:min-h-[610px] lg:grid-cols-[1.2fr_0.8fr]"
                 style={{ top: `calc(5.5rem + ${index * 0.8}rem)`, background: 'var(--surface-solid)' }}
               >
                 <div data-project-media className="relative min-h-[280px] overflow-hidden bg-[var(--canvas-deep)] sm:min-h-[380px] lg:min-h-full">

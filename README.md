@@ -1,27 +1,27 @@
-# Kushal Choudhary — Portfolio Website
+# Kushal Choudhary portfolio
 
-A modern, production-ready portfolio website built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion. Features advanced animations, custom cursor effects, and a fully responsive design.
+A recruiter-focused engineering portfolio for AI products, data platforms, backend systems, and open-source work. The experience prioritizes current products, measurable proof, detailed case studies, and a fast path to the latest resume.
 
-## 🚀 Tech Stack
+## Technology
 
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Deployment**: Vercel/Netlify ready
+- Next.js 14 App Router and TypeScript
+- Tailwind CSS with an Outfit and IBM Plex Mono type system
+- GSAP ScrollTrigger and Framer Motion
+- Phosphor icons
+- Static metadata, JSON-LD, sitemap, robots, and a reproducible Open Graph image
+- Automated monthly health checks for public project links
 
-## ✨ Features
+## Experience structure
 
-- **Custom Cursor**: Smooth animated cursor with hover effects
-- **Particle Background**: Animated starfield background
-- **Scroll Animations**: Reveal animations on scroll
-- **Responsive Design**: Mobile-first approach
-- **Dark Theme**: GitHub-inspired dark theme
-- **SEO Optimized**: Meta tags and proper structure
-- **Performance**: Optimized images and code splitting
+- Recruiter snapshot with role fit, scale, graduation, and contribution proof
+- Five current priority projects
+- Measurable project evidence carousel
+- Five in-depth case studies with walkthrough videos where available
+- Experience, open source, capabilities, education, credentials, and direct contact
+- Expandable archive of all public repositories
+- Reduced-motion support, keyboard focus states, semantic landmarks, and responsive layouts
 
-## 📦 Installation
+## Local development
 
 ```bash
 # Navigate to portfolio directory
@@ -38,9 +38,15 @@ npm run build
 
 # Start production server
 npm start
+
+# Verify public project links
+npm run check:links
+
+# Regenerate the social preview image
+npm run render:og
 ```
 
-## 🌐 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 
@@ -57,7 +63,7 @@ npm start
    - Publish directory: `.next`
    - Install command: `npm install`
 
-## 📁 Project Structure
+## Project structure
 
 ```
 portfolio/
@@ -90,7 +96,7 @@ portfolio/
 └── vercel.json
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Update Content
 

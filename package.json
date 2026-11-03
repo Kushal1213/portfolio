@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "check:links": "node scripts/check-links.mjs",
+    "render:og": "node scripts/render-og.cjs",
     "start": "next start",
     "lint": "next lint"
   },
@@ -31,6 +33,7 @@
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.2.0",
     "postcss": "^8.4.0",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.0"
   }
