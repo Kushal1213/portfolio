@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, GithubLogo, Play } from '@phosphor-icons/react'
-import { PROJECTS } from '@/data/portfolio'
+import { LATEST_WORK, PROJECTS, REPOSITORY_ARCHIVE } from '@/data/portfolio'
 
 type Project = (typeof PROJECTS)[number]
 
@@ -132,12 +132,63 @@ export default function Projects() {
             Systems with a reason to exist.
           </h2>
           <p className="mt-5 max-w-[65ch] text-lg leading-8 site-muted">
-            Machine learning, backend architecture, and AI products built around real constraints — with walkthroughs where they help.
+            The newest product, AI, data, and developer-tooling work — followed by deeper case studies and the complete public repository archive.
           </p>
         </div>
 
+        <div className="mt-14 grid border-b border-t site-rule lg:grid-cols-2">
+          {LATEST_WORK.map((work, index) => (
+            <motion.article
+              key={work.title}
+              className={`group py-8 lg:min-h-[310px] lg:px-9 lg:py-10 ${
+                index % 2 === 0 ? 'lg:border-r site-rule' : ''
+              } ${index >= 2 ? 'border-t site-rule' : index === 1 ? 'border-t site-rule lg:border-t-0' : ''}`}
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: (index % 2) * 0.06, duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="site-kicker">{work.eyebrow}</p>
+                  <h3 className="mt-3 text-3xl font-extrabold tracking-[-0.05em] text-balance">{work.title}</h3>
+                </div>
+                <span className="font-mono text-xs tabular-nums site-quiet">{String(index + 1).padStart(2, '0')}</span>
+              </div>
+              <p className="mt-5 max-w-[62ch] leading-7 site-muted">{work.summary}</p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {work.tags.map((tag) => (
+                  <span key={tag} className="rounded-md border px-2.5 py-1 text-xs font-medium site-rule site-muted">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-7 flex flex-wrap gap-4">
+                <a href={work.github} target="_blank" rel="noreferrer" className="site-link inline-flex items-center gap-2 text-sm font-bold">
+                  <GithubLogo size={16} weight="bold" aria-hidden="true" />
+                  Repository
+                  <ArrowUpRight size={15} weight="bold" aria-hidden="true" />
+                </a>
+                {work.demo && (
+                  <a href={work.demo} target="_blank" rel="noreferrer" className="site-link inline-flex items-center gap-2 text-sm font-bold">
+                    Live product
+                    <ArrowUpRight size={15} weight="bold" aria-hidden="true" />
+                  </a>
+                )}
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        <div className="mt-24 max-w-2xl">
+          <p className="site-kicker">Selected case studies</p>
+          <h3 className="mt-3 text-3xl font-extrabold tracking-[-0.05em] text-balance sm:text-4xl">
+            Earlier systems, examined in depth.
+          </h3>
+        </div>
+
         <motion.article
-          className="mt-12 overflow-hidden rounded-[var(--radius-panel)] border site-rule lg:grid lg:grid-cols-[1.35fr_0.65fr]"
+          className="mt-10 overflow-hidden rounded-[var(--radius-panel)] border site-rule lg:grid lg:grid-cols-[1.35fr_0.65fr]"
           style={{ background: 'var(--surface-solid)' }}
           initial={reduceMotion ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -185,6 +236,30 @@ export default function Projects() {
             />
           ))}
         </div>
+
+        <details className="mt-16 border-y py-7 site-rule">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-extrabold tracking-[-0.03em] marker:hidden">
+            <span>
+              Full GitHub archive
+              <span className="ml-3 font-mono text-sm font-medium site-accent">{REPOSITORY_ARCHIVE.length} public repositories</span>
+            </span>
+            <span className="font-mono text-xs uppercase tracking-[0.12em] site-quiet">Expand</span>
+          </summary>
+          <div className="mt-7 grid gap-x-8 gap-y-0 sm:grid-cols-2 lg:grid-cols-3">
+            {REPOSITORY_ARCHIVE.map((repository) => (
+              <a
+                key={repository}
+                href={`https://github.com/Kushal1213/${repository}`}
+                target="_blank"
+                rel="noreferrer"
+                className="site-link flex min-w-0 items-center justify-between gap-3 border-t py-3 text-sm site-rule"
+              >
+                <span className="truncate font-medium">{repository}</span>
+                <ArrowUpRight size={14} weight="bold" className="shrink-0" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        </details>
       </div>
     </section>
   )

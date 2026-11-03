@@ -28,7 +28,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.04, duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
           >
-            Software engineering for AI and data systems
+            Software, data, and AI systems
           </motion.p>
           <motion.h1
             className="max-w-5xl text-[clamp(2.5rem,5.5vw,5.25rem)] font-extrabold leading-[1.05] tracking-[-0.07em] text-balance"
@@ -36,7 +36,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.55, ease: [0.32, 0.72, 0, 1] }}
           >
-            Intelligence that holds up.
+            Products that think. Systems that hold up.
           </motion.h1>
           <motion.p
             className="mt-5 max-w-[65ch] text-base leading-7 site-muted sm:text-lg sm:leading-8"
@@ -44,7 +44,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.14, duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
           >
-            I turn complex data and AI ideas into dependable software, from model pipelines to production APIs.
+            I build practical AI products, dependable data pipelines, and full-stack systems — from a screen-aware Windows assistant to fraud detection across 500K+ transactions.
           </motion.p>
           <motion.div
             className="mt-8 flex flex-wrap gap-3"

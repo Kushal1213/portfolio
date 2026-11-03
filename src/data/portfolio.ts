@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'Kushal Choudhary',
-  title: 'Software Engineer',
-  tagline: 'Full Stack · AI/ML · Problem Solver',
+  title: 'Software & Data Engineer',
+  tagline: 'AI systems · Data platforms · Product engineering',
   email: 'kushalchoudhary1213@gmail.com',
   phone: '+91 8619299156',
   location: 'Chennai, India',
@@ -16,18 +16,76 @@ export const SITE = {
 } as const
 
 export const HERO_STATS = [
-  { value: '5', label: 'Projects Built', suffix: '+' },
-  { value: '36', label: 'GitHub Repositories', suffix: '' },
+  { value: '10', label: 'Featured Builds', suffix: '' },
+  { value: '43', label: 'Public Repositories', suffix: '' },
   { value: '20', label: 'Technologies', suffix: '+' },
   { value: '400+', label: 'Problems Across Platforms', suffix: '' },
   { value: '4', label: 'Years Learning', suffix: '+' },
 ] as const
 
 export const ROLES = [
-  'Software Engineer',
-  'Full Stack Developer',
-  'AI/ML Engineer',
-  'Problem Solver',
+  'Software & Data Engineer',
+  'AI Product Engineer',
+  'Data Platform Builder',
+  'Open Source Contributor',
+] as const
+
+export const LATEST_WORK = [
+  {
+    title: 'KaamKaaj',
+    eyebrow: 'Recruitment marketplace',
+    summary:
+      'Candidate-first job discovery with bilingual English and Hindi flows, role and locality search, saved jobs, quick apply, and a browser-persisted application tracker.',
+    tags: ['React 19', 'TypeScript', 'Vite', 'Local-first', 'Accessibility'],
+    github: 'https://github.com/Kushal1213/kaamkaaj',
+    demo: 'https://kushal1213.github.io/kaamkaaj/',
+  },
+  {
+    title: 'Cuepoint',
+    eyebrow: 'Windows AI desktop assistant',
+    summary:
+      'Screen-aware help that can answer, visually guide, and perform approved tasks in place, built as a Tauri desktop client with a bundled local FastAPI service and bring-your-own-key AI.',
+    tags: ['Tauri 2', 'FastAPI', 'Python', 'TypeScript', 'Multimodal AI'],
+    github: 'https://github.com/Kushal1213/cuepoint',
+    demo: 'https://kushal1213.github.io/cuepoint/',
+  },
+  {
+    title: 'GPT From Scratch',
+    eyebrow: 'Machine learning foundations',
+    summary:
+      'A working GPT assembled from first principles: backpropagation, normalization, tokenization, attention, transformers, grouped-query attention, KV caching, training, and generation.',
+    tags: ['Python', 'PyTorch', 'Transformers', 'BPE', 'KV Cache'],
+    github: 'https://github.com/Kushal1213/neetcode-gpt',
+    demo: null,
+  },
+  {
+    title: 'Agentic AI eBook RAG',
+    eyebrow: 'Grounded knowledge assistant',
+    summary:
+      'A LangGraph retrieval pipeline with Pinecone, confidence scoring, source-page context, a relevance gate that refuses unsupported questions, FastAPI, and an optional Streamlit UI.',
+    tags: ['LangGraph', 'Pinecone', 'OpenAI', 'FastAPI', 'Streamlit'],
+    github: 'https://github.com/Kushal1213/rag-task',
+    demo: null,
+  },
+  {
+    title: 'Cotoff',
+    eyebrow: 'Coding-agent infrastructure',
+    summary:
+      'A Node.js toolkit that routes bulk reads and predictable code generation to lower-cost worker modes while keeping architecture, debugging, and final edits with the primary agent.',
+    tags: ['Node.js', 'Agent tooling', 'CLI', 'Hooks', 'Testing'],
+    github: 'https://github.com/Kushal1213/cotoff',
+    demo: null,
+  },
+] as const
+
+export const REPOSITORY_ARCHIVE = [
+  'awesome-langchain', 'taskify-fullstack', 'insightboard', 'so3', 'so2', 'newsletter',
+  'assignment', 'to-do', 'Kushal1213', 'kushal', 'resume', 'cotoff', 'sp3', 'rag-task',
+  'neetcode-gpt', 'fraud-detection-saas', 'collabcode', 'shopify-xeno-pro', 'texttosqlconv',
+  'pdf-chatbot-rag', 'shopify', 'veyra', 'cuepoint', 'test2', 'querycraft', 'lemonade',
+  'caracal', 'fd1', 'texttosql', 'jan', 'Kushal_Task_Manager', 'portfolio', 'kaamkaaj',
+  'sql-agent-langchain', 'shopify-', 'Whispershield', 'Sleep-Oracle', 'so4', 'test',
+  'neetcode-submissions', 'Job-pilot', 'fraud-detection', 'fddr',
 ] as const
 
 export const PROJECTS = [
@@ -328,7 +386,7 @@ export const EXPERIENCE = [
     highlight: true,
     bullets: [
       'Contributed to AMD\'s production LLM inference server — backend improvements, documentation, and test coverage.',
-      'Merged 2 PRs into main: production endpoint test coverage + LangChain integration documentation.',
+      'Merged 3 PRs into main, including production endpoint coverage, API error handling, and LangChain integration documentation.',
       'Raised 5 actionable issues identifying bugs, silent test shadowing, and race condition gaps — 3 fixed by core team.',
       'Proposed CI architecture improvement (env-var gated integration tests) adopted by maintainers.',
     ],
@@ -368,6 +426,7 @@ export const SKILL_CATEGORIES = [
       { name: 'Random Forest', level: 'Deployed to production' },
       { name: 'scikit-learn', level: 'Built multiple projects' },
       { name: 'LangChain', level: 'Hands-on experience' },
+      { name: 'LangGraph', level: 'Built grounded RAG systems' },
       { name: 'RAG', level: 'Built multiple projects' },
       { name: 'SHAP / XAI', level: 'Used in production' },
     ],
@@ -388,6 +447,7 @@ export const SKILL_CATEGORIES = [
       { name: 'Node.js', level: 'Deployed to production' },
       { name: 'Express.js', level: 'Built multiple projects' },
       { name: 'Flask', level: 'Deployed to production' },
+      { name: 'FastAPI', level: 'Built APIs and local services' },
       { name: 'REST APIs', level: 'Built multiple projects' },
       { name: 'Webhooks', level: 'Used in production' },
     ],
@@ -399,6 +459,7 @@ export const SKILL_CATEGORIES = [
       { name: 'Next.js', level: 'Built multiple projects' },
       { name: 'TailwindCSS', level: 'Hands-on experience' },
       { name: 'Framer Motion', level: 'Hands-on experience' },
+      { name: 'Vite', level: 'Shipped static React products' },
     ],
   },
   {
@@ -428,6 +489,7 @@ export const SKILL_CATEGORIES = [
       { name: 'Postman', level: 'Hands-on experience' },
       { name: 'VS Code', level: 'Daily driver' },
       { name: 'Linux', level: 'Hands-on experience' },
+      { name: 'Tauri', level: 'Built a Windows desktop product' },
     ],
   },
 ] as const
@@ -462,36 +524,36 @@ export const LEETCODE = {
 export const GITHUB = {
   username: 'Kushal1213',
   profileUrl: 'https://github.com/Kushal1213',
-  publicRepos: 36,
+  publicRepos: 43,
   avatarUrl: 'https://avatars.githubusercontent.com/u/132321061?v=4',
   pinnedRepos: [
     {
-      name: 'fraud-detection',
-      fullName: 'Kushal1213/fraud-detection',
-      description: 'Temporal Motif-Aware Fraud Detection using GNN + XGBoost on 500K+ transactions.',
-      language: 'Python',
-      url: 'https://github.com/Kushal1213/fraud-detection',
+      name: 'cuepoint',
+      fullName: 'Kushal1213/cuepoint',
+      description: 'Screen-aware Windows AI assistant built with Tauri and a bundled local FastAPI service.',
+      language: 'TypeScript + Python',
+      url: 'https://github.com/Kushal1213/cuepoint',
     },
     {
-      name: 'querycraft',
-      fullName: 'Kushal1213/querycraft',
-      description: 'AI-powered Text-to-SQL platform on Google Cloud with schema-aware prompt engineering.',
-      language: 'Python',
-      url: 'https://github.com/Kushal1213/querycraft',
+      name: 'kaamkaaj',
+      fullName: 'Kushal1213/kaamkaaj',
+      description: 'Bilingual candidate-first recruitment marketplace with local-first application tracking.',
+      language: 'TypeScript',
+      url: 'https://github.com/Kushal1213/kaamkaaj',
     },
     {
-      name: 'Sleep-Oracle',
-      fullName: 'Kushal1213/Sleep-Oracle',
-      description: 'ML pipeline for sleep disorder prediction deployed as Flask web application.',
+      name: 'neetcode-gpt',
+      fullName: 'Kushal1213/neetcode-gpt',
+      description: 'GPT architecture built from first principles, from backpropagation to KV-cached generation.',
       language: 'Python',
-      url: 'https://github.com/Kushal1213/Sleep-Oracle',
+      url: 'https://github.com/Kushal1213/neetcode-gpt',
     },
     {
-      name: 'shopify',
-      fullName: 'Kushal1213/shopify',
-      description: 'Xeno Analytics — real-time e-commerce analytics with ML forecasting and segmentation.',
-      language: 'JavaScript',
-      url: 'https://github.com/Kushal1213/shopify',
+      name: 'rag-task',
+      fullName: 'Kushal1213/rag-task',
+      description: 'Grounded LangGraph RAG assistant with retrieval gating, confidence, and source context.',
+      language: 'Python',
+      url: 'https://github.com/Kushal1213/rag-task',
     },
   ],
 } as const
@@ -513,6 +575,12 @@ export const OPEN_SOURCE = {
       status: 'merged',
     },
     {
+      type: 'pr' as const,
+      title: 'API error-handling improvements',
+      description: 'Hardened production API behavior through review-driven backend changes.',
+      status: 'merged',
+    },
+    {
       type: 'issue' as const,
       title: 'Silent test shadowing in test suite',
       description: 'Identified tests hiding potential bugs from CI coverage reports.',
@@ -526,7 +594,7 @@ export const OPEN_SOURCE = {
     },
   ],
   stats: [
-    { value: '2', label: 'PRs Merged' },
+    { value: '3', label: 'PRs Merged' },
     { value: '5', label: 'Issues Raised' },
     { value: '3', label: 'Issues Fixed' },
   ],

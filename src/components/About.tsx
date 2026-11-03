@@ -27,7 +27,7 @@ export default function About() {
             A systems-minded builder.
           </h2>
           <p className="mt-6 max-w-[65ch] text-lg leading-8 site-muted">
-            I am a software engineer focused on the seam between reliable backend systems and practical machine learning.
+            I am a software and data engineer working across local-first products, reliable backend systems, and practical machine learning.
           </p>
 
           <div className="mt-10 flex items-center gap-5">
