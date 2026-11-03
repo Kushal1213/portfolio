@@ -5,7 +5,7 @@ export const SITE = {
   email: 'kushalchoudhary1213@gmail.com',
   phone: '+91 8619299156',
   location: 'Chennai, India',
-  availability: 'Open to internships & full-time roles · Remote-friendly',
+  availability: 'Open to data, backend & AI engineering roles · Remote-friendly',
   resumeUrl: '/resume.pdf',
   urls: {
     github: 'https://github.com/Kushal1213',
@@ -369,7 +369,7 @@ export const PROJECTS = [
     },
     tags: ['Python', 'scikit-learn', 'Flask', 'Pandas', 'Random Forest'],
     github: 'https://github.com/Kushal1213/Sleep-Oracle',
-    demo: 'https://sleep-oracle-frontend-4119.onrender.com/',
+    demo: null,
     video: '/videos/sleep.mp4',
     poster: '/images/data-topography.webp',
     gradient: 'from-blue-500/20 via-indigo-500/10 to-violet-500/20',

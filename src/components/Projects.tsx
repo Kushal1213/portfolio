@@ -59,8 +59,8 @@ export default function Projects() {
               style={{ background: index === 0 ? 'var(--surface-solid)' : 'color-mix(in srgb, var(--surface-solid) 68%, transparent)' }}
             >
               {index === 0 ? (
-                <div className="pointer-events-none absolute inset-0 opacity-20 transition-transform duration-700 ease-out group-hover:scale-105" aria-hidden="true">
-                  <Image src="/images/systems-sculpture.webp" alt="" fill className="object-cover mix-blend-luminosity" sizes="(max-width: 1024px) 100vw, 66vw" />
+                <div className="pointer-events-none absolute inset-0 opacity-35 transition-transform duration-700 ease-out group-hover:scale-105" aria-hidden="true">
+                  <Image src="/images/cuepoint-product.png" alt="" fill className="object-cover object-center mix-blend-luminosity" sizes="(max-width: 1024px) 100vw, 66vw" />
                   <div className="absolute inset-0 bg-gradient-to-r from-[var(--surface-solid)] via-[color-mix(in_srgb,var(--surface-solid)_82%,transparent)] to-transparent" />
                 </div>
               ) : null}

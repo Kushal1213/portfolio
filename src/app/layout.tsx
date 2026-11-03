@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, Outfit } from 'next/font/google'
 import './globals.css'
-import { SITE } from '@/data/portfolio'
+import { LATEST_WORK, SITE } from '@/data/portfolio'
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 'swap' })
 const ibmPlexMono = IBM_Plex_Mono({
@@ -42,14 +42,41 @@ export const viewport: Viewport = { themeColor: '#11130f', width: 'device-width'
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: SITE.name,
-  jobTitle: 'Software and Data Engineer',
-  email: SITE.email,
-  url: siteUrl,
-  sameAs: [SITE.urls.github, SITE.urls.linkedin, SITE.urls.leetcode],
-  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Vellore Institute of Technology Chennai' },
-  knowsAbout: ['Machine Learning', 'Data Engineering', 'Software Engineering', 'Graph Neural Networks', 'Full Stack Development'],
+  '@graph': [
+    {
+      '@type': 'ProfilePage',
+      name: `${SITE.name} engineering portfolio`,
+      url: siteUrl,
+      mainEntity: { '@id': `${siteUrl}/#person` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}/#person`,
+      name: SITE.name,
+      jobTitle: 'Software and Data Engineer',
+      email: SITE.email,
+      url: siteUrl,
+      sameAs: [SITE.urls.github, SITE.urls.linkedin, SITE.urls.leetcode],
+      alumniOf: { '@type': 'CollegeOrUniversity', name: 'Vellore Institute of Technology Chennai' },
+      knowsAbout: ['Machine Learning', 'Data Engineering', 'Software Engineering', 'Graph Neural Networks', 'Full Stack Development'],
+    },
+    {
+      '@type': 'ItemList',
+      name: 'Selected engineering projects',
+      itemListElement: LATEST_WORK.map((project, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'SoftwareSourceCode',
+          name: project.title,
+          description: project.summary,
+          codeRepository: project.github,
+          url: project.demo ?? project.github,
+          programmingLanguage: project.tags,
+        },
+      })),
+    },
+  ],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
+import RecruiterSnapshot from '@/components/RecruiterSnapshot'
 import Projects from '@/components/Projects'
 import About from '@/components/About'
 import Experience from '@/components/Experience'
@@ -16,6 +17,7 @@ export default function Home() {
       <Navbar />
       <main id="main-content" className="overflow-x-hidden w-full max-w-full">
         <Hero />
+        <RecruiterSnapshot />
         <Projects />
         <Experience />
         <Skills />
