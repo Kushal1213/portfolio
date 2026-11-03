@@ -10,7 +10,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: 'swap',
   weight: ['400', '500', '600'],
 })
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kushalchoudhary.vercel.app'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kushal-daai-ml.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

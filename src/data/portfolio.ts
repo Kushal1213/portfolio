@@ -11,7 +11,7 @@ export const SITE = {
     github: 'https://github.com/Kushal1213',
     linkedin: 'https://www.linkedin.com/in/kushal-choudhary-8044a227b/',
     leetcode: 'https://leetcode.com/u/kushal_choudhary/',
-    portfolio: 'https://kushalchoudhary.dev',
+    portfolio: 'https://kushal-daai-ml.vercel.app',
   },
 } as const
 
